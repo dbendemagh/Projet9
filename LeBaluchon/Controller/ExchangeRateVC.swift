@@ -16,6 +16,9 @@ class ExchangeRateVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var originalCurrencyButton: UIButton!
     @IBOutlet weak var currenciesPickerView: UIPickerView!
     
+    private let apiService = APIService()
+    private let exchangeRate = ExchangeRate()
+    
     let currencies = ["Eur", "Dlr", "Aaa"]
     
     override func viewDidLoad() {
@@ -45,15 +48,35 @@ class ExchangeRateVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return currencies.count
+        return exchangeRate.currencies.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currencies[row]
+        let currency = Array(exchangeRate.currencies)[row].key
+        return currency
     }
     
     @IBAction func originalCurrencyButton(_ sender: UIButton) {
         originalCurrencyTextView.inputView = currenciesPickerView
     }
     
+    @IBAction func ConvertButton(_ sender: UIButton) {
+        let fixerRequest = apiService.createFixerRequest(endPoint: URLFixer.currencies)
+//        apiService.get(request: fixerRequest) { (success, currencies: [Currency]) in
+//            currencies.forEach({print($0)})
+//        }
+        apiService.get(request: fixerRequest) { (success, currencies: Currencies?) in
+            if success {
+                self.exchangeRate.currencies = currencies!.symbols
+                
+                print(currencies?.symbols.count)
+                //currencies.foreach({print($0.key)})
+                currencies?.symbols.forEach({ (arg0) in
+                    
+                    let (key, value) = arg0
+                    print("\(key) \(value)")
+                })
+            }
+        }
+    }
 }

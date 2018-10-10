@@ -75,6 +75,9 @@
                                 <state key="normal" title="Convertir">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="ConvertButton:" destination="vlM-yc-s5P" eventType="touchUpInside" id="ubr-zg-Yxh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLs-J9-i5c">
                                 <rect key="frame" x="269" y="181" width="90" height="40"/>

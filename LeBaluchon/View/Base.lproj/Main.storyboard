@@ -72,11 +72,11 @@
                                     <constraint firstAttribute="height" constant="50" id="kQg-tf-lzb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
-                                <state key="normal" title="Convertir">
+                                <state key="normal" title="Convert">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="ConvertButton:" destination="vlM-yc-s5P" eventType="touchUpInside" id="ubr-zg-Yxh"/>
+                                    <action selector="convertButton:" destination="vlM-yc-s5P" eventType="touchUpInside" id="ubr-zg-Yxh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLs-J9-i5c">
@@ -106,6 +106,9 @@
                                 <state key="normal" title="USD">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="convertedCurrencyBtnTapped:" destination="vlM-yc-s5P" eventType="touchUpInside" id="Ks8-xv-Mgl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Euro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nR7-6U-3RB">
                                 <rect key="frame" x="16" y="159" width="343" height="19"/>
@@ -188,6 +191,7 @@
                     <tabBarItem key="tabBarItem" title="Taux de change" id="HSU-iy-9oz"/>
                     <navigationItem key="navigationItem" title="Taux de change" id="JBX-5Z-2ai"/>
                     <connections>
+                        <outlet property="convertedCurrencyButton" destination="XI0-q3-Fd9" id="4rv-EF-n6R"/>
                         <outlet property="currenciesPickerView" destination="Dje-bz-Cp0" id="yOb-pq-25T"/>
                         <outlet property="languagesPickerView" destination="Dje-bz-Cp0" id="55c-uS-8kp"/>
                         <outlet property="originalCurrencyButton" destination="FLs-J9-i5c" id="wjb-KG-dFK"/>

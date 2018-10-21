@@ -8,11 +8,13 @@
 
 import Foundation
 
-struct Currencies: Decodable {
+struct CurrencyName: Decodable {
     let symbols: [String: String]
 }
 
-struct Exchange: Decodable {
-    let rates: [String: String]
+struct ExchangeRate: Decodable {
+    let timestamp: Int
+    let base: String
+    let rates: [String: Double]
 }
 

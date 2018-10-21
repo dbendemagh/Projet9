@@ -9,11 +9,6 @@
 import Foundation
 
 class APIService {
-    //static var shared = QuoteService()
-    //private init() {}
-    
-    private static let quoteURL = URL(string: "https://api.forismatic.com/api/1.0/")!
-    private static let pictureURL = URL(string: "https://source.unsplash.com/random/1000x1000")!
     
     private var task: URLSessionDataTask?
     
@@ -40,12 +35,20 @@ class APIService {
                     return
                 }
                 
-                do {
-                    let responseJSON = try JSONDecoder().decode(T.self, from: data)
-                    callBack(true, responseJSON)
-                } catch let jsonErr {
-                    print("Failed to decode:", jsonErr)
+                
+                guard let responseJSON = try? JSONDecoder().decode(T.self, from: data) else {
+                    callBack(false, nil)
+                    return
                 }
+                
+                callBack(true, responseJSON)
+                
+//                do {
+//                    let responseJSON = try JSONDecoder().decode(T.self, from: data)
+//                    callBack(true, responseJSON)
+//                } catch let jsonErr {
+//                    print("Failed to decode:", jsonErr)
+//                }
                 
 //                guard let responseJSON = try? JSONDecoder().decode(T.self, from: data),
 //                    let text = responseJSON["quoteText"],
@@ -80,11 +83,5 @@ class APIService {
 //        return request
 //    }
     
-    func createFixerRequest(endPoint: String) -> URLRequest {
-        let url = URL(string: URLFixer.baseURL + endPoint + "&access_key=" + URLFixer.apiKey)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        return request
-    }
+    
 }

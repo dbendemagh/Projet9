@@ -8,21 +8,23 @@
 
 import Foundation
 
-class APIService {
+protocol APIService {
+    var urlSession: URLSession { get set }
+    var task: URLSessionDataTask? { get set }
     
-    private var task: URLSessionDataTask?
+    mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> ())
+}
+
+extension APIService {
     
-    private var apiSession: URLSession    // = URLSession(configuration: .default)
+    //private var task: URLSessionDataTask?
+    //private var apiSession: URLSession    // = URLSession(configuration: .default)
+    
     //private var imageSession: URLSession    //= URLSession(configuration: .default)
     
-    init(apiSession: URLSession = URLSession(configuration: .default)) {
-        self.apiSession = apiSession
-        //self.imageSession = imageSession
-    }
-    
-    func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> ()) {
+    mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> ()) {
         
-        task = apiSession.dataTask(with: request) { (data, response, error) in
+        task = urlSession.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     callBack(false, nil)
@@ -35,39 +37,16 @@ class APIService {
                     return
                 }
                 
-                
                 guard let responseJSON = try? JSONDecoder().decode(T.self, from: data) else {
                     callBack(false, nil)
                     return
                 }
                 
+                print("Get ok")
+                
                 callBack(true, responseJSON)
                 
-//                do {
-//                    let responseJSON = try JSONDecoder().decode(T.self, from: data)
-//                    callBack(true, responseJSON)
-//                } catch let jsonErr {
-//                    print("Failed to decode:", jsonErr)
-//                }
-                
-//                guard let responseJSON = try? JSONDecoder().decode(T.self, from: data),
-//                    let text = responseJSON["quoteText"],
-//                    let author = responseJSON["quoteAuthor"] else {
-//                        callBack(false, nil)
-//                        return
-//                }
-                
-                //getImage(completionHandler: { (data) in
-                //    <#code#>
-                //})
-//                self.getImage { (data) in
-//                    if let data = data {
-//                        let quote = Quote(text: text, author: author, imageData: data)
-//                        callBack(true, quote)
-//                    } else {
-//                        callBack(false, nil)
-//                    }
-//                }
+
             }
         }
         task?.resume()

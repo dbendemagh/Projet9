@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +30,7 @@
             </objects>
             <point key="canvasLocation" x="457" y="-493"/>
         </scene>
-        <!--Taux de change-->
+        <!--Exchange Rate-->
         <scene sceneID="Y9Y-wY-bjS">
             <objects>
                 <viewController id="vlM-yc-s5P" customClass="ExchangeRateVC" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,23 +38,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ztb-Us-d4V">
-                                <rect key="frame" x="16" y="181" width="250" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="WoR-Ka-Sw3"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="25"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0,5" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZW-qs-MPe">
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZW-qs-MPe">
                                 <rect key="frame" x="16" y="258" width="250" height="40"/>
+                                <color key="backgroundColor" red="0.66889295189999998" green="0.89562432120000002" blue="0.92145264149999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="MZy-MP-Sl2"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dje-bz-Cp0">
                                 <rect key="frame" x="0.0" y="368" width="375" height="162"/>
@@ -76,38 +67,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="convertButton:" destination="vlM-yc-s5P" eventType="touchUpInside" id="ubr-zg-Yxh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLs-J9-i5c">
-                                <rect key="frame" x="269" y="181" width="90" height="40"/>
-                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="5QE-XV-XVY"/>
-                                    <constraint firstAttribute="height" constant="40" id="eDY-2u-Wua"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="25"/>
-                                <inset key="imageEdgeInsets" minX="8" minY="8" maxX="60" maxY="8"/>
-                                <state key="normal" title="EUR">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="originalCurrencyButton:" destination="vlM-yc-s5P" eventType="touchUpInside" id="8bN-Cg-YOQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XI0-q3-Fd9">
-                                <rect key="frame" x="269" y="258" width="90" height="40"/>
-                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="GG9-r0-Vs4"/>
-                                    <constraint firstAttribute="width" constant="90" id="aNR-kB-FP6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="25"/>
-                                <state key="normal" title="USD">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="convertedCurrencyBtnTapped:" destination="vlM-yc-s5P" eventType="touchUpInside" id="Ks8-xv-Mgl"/>
+                                    <action selector="convertButtonTapped:" destination="vlM-yc-s5P" eventType="touchUpInside" id="ubr-zg-Yxh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Euro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nR7-6U-3RB">
@@ -148,57 +108,105 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="160-3T-ilt">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="160-3T-ilt">
                                 <rect key="frame" x="169" y="559.5" width="37" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="WFn-a8-kw8"/>
                                     <constraint firstAttribute="width" constant="37" id="hN6-nc-Son"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="EUR" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u02-T7-wlv">
+                                <rect key="frame" x="269" y="181" width="90" height="40"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ge8-Bb-yBr"/>
+                                    <constraint firstAttribute="width" constant="90" id="twt-Z0-U8k"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="USD" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F5j-9W-8ZI">
+                                <rect key="frame" x="269" y="258" width="90" height="40"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="TEE-td-uqd"/>
+                                    <constraint firstAttribute="width" constant="90" id="aZo-ne-A9L"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="e0H-Y3-NK3"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="nnM-Mx-YF4"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W7t-2l-2Yf">
+                                <rect key="frame" x="16" y="181" width="250" height="40"/>
+                                <color key="backgroundColor" red="0.66889295188639908" green="0.89562432121838231" blue="0.92145264149999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Mnf-c3-ZCH"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="nR7-6U-3RB" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="0M8-sf-mqz"/>
                             <constraint firstItem="890-Nr-onH" firstAttribute="top" secondItem="uZW-qs-MPe" secondAttribute="bottom" constant="25" id="25I-xY-x9F"/>
-                            <constraint firstItem="ztb-Us-d4V" firstAttribute="top" secondItem="nR7-6U-3RB" secondAttribute="bottom" constant="3" id="3As-Eb-VLh"/>
+                            <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="F5j-9W-8ZI" secondAttribute="trailing" constant="16" id="2DN-xh-ps1"/>
+                            <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="u02-T7-wlv" secondAttribute="trailing" constant="16" id="5fr-R0-DMd"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="890-Nr-onH" secondAttribute="trailing" constant="16" id="63U-mr-K8D"/>
                             <constraint firstItem="160-3T-ilt" firstAttribute="centerY" secondItem="0lq-NR-Y8H" secondAttribute="centerY" id="6p6-xE-ISV"/>
+                            <constraint firstItem="u02-T7-wlv" firstAttribute="leading" secondItem="W7t-2l-2Yf" secondAttribute="trailing" constant="3" id="ALb-SS-1Us"/>
                             <constraint firstItem="ybG-7j-48Y" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="H8k-6e-BJk"/>
-                            <constraint firstItem="FLs-J9-i5c" firstAttribute="top" secondItem="nR7-6U-3RB" secondAttribute="bottom" constant="3" id="Iou-YW-G4b"/>
+                            <constraint firstItem="F5j-9W-8ZI" firstAttribute="top" secondItem="oK5-tR-LOS" secondAttribute="bottom" constant="3" id="IFS-4t-Um7"/>
                             <constraint firstItem="nR7-6U-3RB" firstAttribute="top" secondItem="ybG-7j-48Y" secondAttribute="bottom" constant="25" id="KUL-zZ-UVT"/>
                             <constraint firstItem="0lq-NR-Y8H" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="15" id="L3l-ou-P6M"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="nR7-6U-3RB" secondAttribute="trailing" constant="16" id="MHu-Gb-KfR"/>
-                            <constraint firstItem="XI0-q3-Fd9" firstAttribute="leading" secondItem="uZW-qs-MPe" secondAttribute="trailing" constant="3" id="Ocd-T6-9Pj"/>
+                            <constraint firstItem="W7t-2l-2Yf" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="N7k-1a-fhQ"/>
+                            <constraint firstItem="F5j-9W-8ZI" firstAttribute="leading" secondItem="uZW-qs-MPe" secondAttribute="trailing" constant="3" id="Pwn-NB-JUW"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="oK5-tR-LOS" secondAttribute="trailing" constant="16" id="U5t-0t-xkE"/>
                             <constraint firstItem="ybG-7j-48Y" firstAttribute="top" secondItem="AtA-RX-IAF" secondAttribute="top" constant="30" id="VPP-uj-J7H"/>
+                            <constraint firstItem="u02-T7-wlv" firstAttribute="top" secondItem="nR7-6U-3RB" secondAttribute="bottom" constant="3" id="aL9-XA-kze"/>
                             <constraint firstItem="uZW-qs-MPe" firstAttribute="top" secondItem="oK5-tR-LOS" secondAttribute="bottom" constant="3" id="adH-qt-7u9"/>
                             <constraint firstItem="oK5-tR-LOS" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="apG-dH-gYL"/>
                             <constraint firstItem="890-Nr-onH" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="ar9-sJ-c62"/>
-                            <constraint firstItem="oK5-tR-LOS" firstAttribute="top" secondItem="ztb-Us-d4V" secondAttribute="bottom" constant="15" id="c7h-vF-OKd"/>
-                            <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="XI0-q3-Fd9" secondAttribute="trailing" constant="16" id="cJy-pY-YUE"/>
                             <constraint firstItem="160-3T-ilt" firstAttribute="centerX" secondItem="0lq-NR-Y8H" secondAttribute="centerX" id="fy4-Cv-U7X"/>
-                            <constraint firstItem="XI0-q3-Fd9" firstAttribute="top" secondItem="oK5-tR-LOS" secondAttribute="bottom" constant="3" id="jn6-cI-oPX"/>
-                            <constraint firstItem="ztb-Us-d4V" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="mKH-tr-QZl"/>
-                            <constraint firstItem="FLs-J9-i5c" firstAttribute="leading" secondItem="ztb-Us-d4V" secondAttribute="trailing" constant="3" id="osD-e6-YOc"/>
+                            <constraint firstItem="oK5-tR-LOS" firstAttribute="top" secondItem="W7t-2l-2Yf" secondAttribute="bottom" constant="15" id="nUL-ND-Dak"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="ybG-7j-48Y" secondAttribute="trailing" constant="16" id="qpS-Hw-PFm"/>
-                            <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="FLs-J9-i5c" secondAttribute="trailing" constant="16" id="s87-tA-TpQ"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="bottom" secondItem="0lq-NR-Y8H" secondAttribute="bottom" constant="15" id="t8N-VI-CEA"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="0lq-NR-Y8H" secondAttribute="trailing" constant="15" id="wSm-Rp-Jly"/>
+                            <constraint firstItem="W7t-2l-2Yf" firstAttribute="top" secondItem="nR7-6U-3RB" secondAttribute="bottom" constant="3" id="wXe-a2-507"/>
                             <constraint firstItem="uZW-qs-MPe" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="yfy-h1-KVr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AtA-RX-IAF"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aRW-a9-L1R" appends="YES" id="RUq-pO-cbY"/>
+                        </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Taux de change" id="HSU-iy-9oz"/>
-                    <navigationItem key="navigationItem" title="Taux de change" id="JBX-5Z-2ai"/>
+                    <tabBarItem key="tabBarItem" title="Exchange Rate" id="HSU-iy-9oz"/>
+                    <navigationItem key="navigationItem" title="Exchange Rate" id="JBX-5Z-2ai"/>
                     <connections>
-                        <outlet property="convertedCurrencyButton" destination="XI0-q3-Fd9" id="4rv-EF-n6R"/>
-                        <outlet property="currenciesPickerView" destination="Dje-bz-Cp0" id="yOb-pq-25T"/>
-                        <outlet property="languagesPickerView" destination="Dje-bz-Cp0" id="55c-uS-8kp"/>
-                        <outlet property="originalCurrencyButton" destination="FLs-J9-i5c" id="wjb-KG-dFK"/>
-                        <outlet property="originalCurrencyTextView" destination="ztb-Us-d4V" id="Lwa-az-UhR"/>
+                        <outlet property="ConversionLabel" destination="ybG-7j-48Y" id="pyo-Va-1jV"/>
+                        <outlet property="activityIndicator" destination="160-3T-ilt" id="IzX-ZM-HBm"/>
+                        <outlet property="convertButton" destination="0lq-NR-Y8H" id="1Uk-Gb-6Fs"/>
+                        <outlet property="currenciesPickerView" destination="Dje-bz-Cp0" id="v4p-sg-O2N"/>
+                        <outlet property="fromCurrencyTextView" destination="u02-T7-wlv" id="5XP-ZR-eTQ"/>
+                        <outlet property="fromEuroLabel" destination="GT2-Lc-kwP" id="TMY-PS-hrd"/>
+                        <outlet property="fromValueTextView" destination="W7t-2l-2Yf" id="lmj-vY-nZW"/>
+                        <outlet property="toCurrencyTextView" destination="F5j-9W-8ZI" id="GYD-kF-xoH"/>
+                        <outlet property="toEuroLabel" destination="6t6-sb-s0n" id="7nK-Eh-8Wc"/>
+                        <outlet property="toValueTextView" destination="uZW-qs-MPe" id="ACF-s4-Z6V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPv-JE-ZvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aRW-a9-L1R">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="vlM-yc-s5P" id="TqU-Ig-7GM"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1684" y="-492.50374812593708"/>
         </scene>
@@ -340,7 +348,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fvw-F3-4e0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Traduction" id="nZc-xb-cu0"/>
+                    <tabBarItem key="tabBarItem" title="Translation" id="nZc-xb-cu0"/>
                     <navigationItem key="navigationItem" title="Traduction" id="sQl-9g-R3b"/>
                     <connections>
                         <outlet property="originalLanguageButton" destination="P1H-uf-9cI" id="E0N-al-DIN"/>

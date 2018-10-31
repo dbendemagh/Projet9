@@ -13,8 +13,6 @@ struct CurrencyName: Decodable {
 }
 
 struct ExchangeRate: Decodable {
-    let timestamp: Int
-    let base: String
     let rates: [String: Double]
 }
 

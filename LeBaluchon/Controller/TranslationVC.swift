@@ -10,12 +10,16 @@ import UIKit
 
 class TranslationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var originalLanguageButton: UIButton!
-    @IBOutlet weak var translationLanguageButton: UIButton!
-    @IBOutlet weak var originalTextView: UITextView!
-    @IBOutlet weak var translatedTextView: UITextView!
+    @IBOutlet weak var fromLanguageButton: UIButton!
+    @IBOutlet weak var toLanguageButton: UIButton!
+    @IBOutlet weak var fromTextView: UITextView!
+    @IBOutlet weak var toTextView: UITextView!
+    
+    var translationService = TranslationService()
     
     let languages = ["Français", "Anglais", "Chinois"]
+    
+    var test: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,23 +29,7 @@ class TranslationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         //translatedTextView.isEditable = false
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -52,5 +40,13 @@ class TranslationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return languages[row]
+    }
+    
+    @IBAction func TranslateButtonTapped(_ sender: UIButton) {
+        //translate()
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        fromTextView.resignFirstResponder()
     }
 }

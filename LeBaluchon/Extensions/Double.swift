@@ -9,11 +9,11 @@
 import Foundation
 
 extension Double {
-    func fraction0() -> String {
+    func fraction2() -> String {
         return String(format: "%.2f", self)
     }
     
-    func fraction2() -> String {
+    func fraction0() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.roundingMode = NumberFormatter.RoundingMode.halfUp

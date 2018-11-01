@@ -250,7 +250,7 @@
             </objects>
             <point key="canvasLocation" x="457" y="200"/>
         </scene>
-        <!--Traduction-->
+        <!--Translation-->
         <scene sceneID="EXM-yy-Zq4">
             <objects>
                 <viewController id="E1Q-St-ezX" customClass="TranslationVC" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
@@ -265,9 +265,12 @@
                                     <constraint firstAttribute="height" constant="50" id="nC3-hc-eWd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
-                                <state key="normal" title="Traduire">
+                                <state key="normal" title="Translate">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="TranslateButtonTapped:" destination="E1Q-St-ezX" eventType="touchUpInside" id="Qx5-Le-Omf"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yqm-u4-4QH">
                                 <rect key="frame" x="16" y="74" width="343" height="469"/>
@@ -283,14 +286,13 @@
                                                     <constraint firstAttribute="height" constant="36" id="jfy-9g-TWT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
-                                                <state key="normal" title="Français">
+                                                <state key="normal" title="en">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gL7-kK-5Ir">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Hello" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gL7-kK-5Ir">
                                                 <rect key="frame" x="0.0" y="46" width="343" height="183.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -311,7 +313,7 @@
                                                     <constraint firstAttribute="width" constant="95" id="v5T-00-7T9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                                <state key="normal" title="Anglais">
+                                                <state key="normal" title="fr">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -335,6 +337,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fvw-F3-4e0" firstAttribute="trailing" secondItem="Yqm-u4-4QH" secondAttribute="trailing" constant="16" id="6qN-7x-D7K"/>
                             <constraint firstItem="Yqm-u4-4QH" firstAttribute="top" secondItem="fvw-F3-4e0" secondAttribute="top" constant="10" id="6zk-Vo-zSu"/>
@@ -347,17 +350,25 @@
                             <constraint firstItem="Yqm-u4-4QH" firstAttribute="leading" secondItem="fvw-F3-4e0" secondAttribute="leading" constant="16" id="dLn-bM-Xao"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fvw-F3-4e0"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2L4-Os-fYz" appends="YES" id="Lbt-iV-sQU"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Translation" id="nZc-xb-cu0"/>
-                    <navigationItem key="navigationItem" title="Traduction" id="sQl-9g-R3b"/>
+                    <navigationItem key="navigationItem" title="Translation" id="sQl-9g-R3b"/>
                     <connections>
-                        <outlet property="originalLanguageButton" destination="P1H-uf-9cI" id="E0N-al-DIN"/>
-                        <outlet property="originalTextView" destination="gL7-kK-5Ir" id="KnY-pi-Edj"/>
-                        <outlet property="translatedTextView" destination="pbp-i7-3vX" id="o8g-qL-A8A"/>
-                        <outlet property="translationLanguageButton" destination="a5Z-Ba-lpI" id="rtF-sg-nmY"/>
+                        <outlet property="fromLanguageButton" destination="P1H-uf-9cI" id="E0N-al-DIN"/>
+                        <outlet property="fromTextView" destination="gL7-kK-5Ir" id="KnY-pi-Edj"/>
+                        <outlet property="toLanguageButton" destination="a5Z-Ba-lpI" id="rtF-sg-nmY"/>
+                        <outlet property="toTextView" destination="pbp-i7-3vX" id="o8g-qL-A8A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MJV-G3-nJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2L4-Os-fYz">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="E1Q-St-ezX" id="ueR-YL-RDb"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1684" y="200.14992503748127"/>
         </scene>

@@ -22,7 +22,7 @@ class ExchangeRateVC: UIViewController {
     @IBOutlet weak var toEuroLabel: UILabel!
     
     //private let apiService = APIService()
-    public let currencyService = CurrencyService()
+    public var currencyService = CurrencyService()
     
     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -49,7 +49,11 @@ class ExchangeRateVC: UIViewController {
     }
     
     func getCurrencySymbols() {
-        currencyService.getCurrencySymbols { (success, currencyName: CurrencyName?) in
+        let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
+        
+        toggleActivityIndicator(shown: true)
+        currencyService.get(request: request) { (success, currencyName: CurrencyName?) in
+            self.toggleActivityIndicator(shown: false)
             if success, let currencyName = currencyName?.symbols {
                 self.currencyService.currencies = currencyName
             } else {
@@ -60,21 +64,25 @@ class ExchangeRateVC: UIViewController {
     }
     
     func getLastExchangeRate() {
+        currencyService.currentExchangeRate = 0
+        
+        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currency: "USD")
+        
         toggleActivityIndicator(shown: true)
-        currencyService.getExchangeRate(currency: "USD") { (success, exchangeRate: Double?) in
+        currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
             self.toggleActivityIndicator(shown: false)
             if success, let exchangeRate = exchangeRate {
-                self.currencyService.currentExchangeRate = exchangeRate
-                self.updateDisplay()
+                if let currentExchangeRate = exchangeRate.rates["USD"] {
+                    self.currencyService.currentExchangeRate = currentExchangeRate
+                    self.updateDisplay()
+                }
             } else {
                 // Alert
-                print("Cannot load exchange rate")
             }
         }
     }
     
     func convert() {
-        
         guard let fromValueText = fromValueTextView.text else {
             // Alert null
             return
@@ -90,13 +98,19 @@ class ExchangeRateVC: UIViewController {
         }
         
         // Calculate with the last exchange rate
+        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currency: toCurrency)
+        
+        getLastExchangeRate()
         toggleActivityIndicator(shown: true)
-        currencyService.getExchangeRate(currency: toCurrency) { (success, exchangeRate) in
+        currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
             self.toggleActivityIndicator(shown: false)
             if success, let exchangeRate = exchangeRate {
-                self.updateDisplay()
-                let result = fromValue * exchangeRate
-                self.toValueTextView.text = result.fraction2()
+                if let currentExchangeRate = exchangeRate.rates[toCurrency] {
+                    self.currencyService.currentExchangeRate = currentExchangeRate
+                    self.updateDisplay()
+                    let result = fromValue * currentExchangeRate
+                    self.toValueTextView.text = result.fraction2()
+                }
             } else {
                 // Alert
                 print("erreur")

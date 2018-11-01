@@ -17,7 +17,7 @@ struct URLFixer {
 }
 
 struct URLTranslation {
-    static let baseURL = "https://translation.googleapis.com/language/translate/v2/"
+    static let baseURL = "https://translation.googleapis.com/language/translate/v2"
     static let apiKey = "AIzaSyA04wv256ASngsHO8hfd-FA31bsOyEOah8"
     
 }

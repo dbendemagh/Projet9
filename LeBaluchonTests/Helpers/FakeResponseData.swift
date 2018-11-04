@@ -10,8 +10,8 @@ import Foundation
 
 class FakeResponseData {
     
-    let responseOK = HTTPURLResponse(url: URL(string: "https://fake.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-    let responseKO = HTTPURLResponse(url: URL(string: "https://fake.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
+    let responseOK = HTTPURLResponse(url: URL(string: "https://ok.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+    let responseKO = HTTPURLResponse(url: URL(string: "https://ko.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
     
     class ResponseError: Error {}
     let error = ResponseError()

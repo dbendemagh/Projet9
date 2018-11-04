@@ -25,5 +25,6 @@ struct URLTranslation {
 struct JSON {
     static let CurrencySymbols = "CurrencySymbols"
     static let ExchangeRate = "ExchangeRate"
+    static let Translation = "Translation"
 }
 

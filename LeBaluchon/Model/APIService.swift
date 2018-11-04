@@ -35,7 +35,10 @@ extension APIService {
                     return
                 }
                 
-                print("Get ok")
+                print(responseJSON)
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print(jsonString)
+                }
                 
                 callBack(true, responseJSON)
                 

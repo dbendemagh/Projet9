@@ -9,5 +9,15 @@
 import Foundation
 
 struct Translation: Decodable {
-    let translatedText: [String: String]
+    let data: Translations
 }
+
+struct Translations: Decodable {
+    let translations: [TranslatedText]
+}
+
+struct TranslatedText: Decodable {
+    let translatedText: String
+}
+
+

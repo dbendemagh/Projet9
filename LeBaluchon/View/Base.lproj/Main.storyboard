@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zcu-EG-RRY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zcu-EG-RRY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -278,21 +278,21 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GBd-7S-7cX">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="229.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1H-uf-9cI">
-                                                <rect key="frame" x="0.0" y="0.0" width="95" height="36"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="English" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p4v-Ne-hxk">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="95" id="Qio-Ii-IP8"/>
-                                                    <constraint firstAttribute="height" constant="36" id="jfy-9g-TWT"/>
+                                                    <constraint firstAttribute="height" constant="30" id="2tQ-19-URF"/>
+                                                    <constraint firstAttribute="width" constant="100" id="T7j-Fg-Res"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
-                                                <state key="normal" title="en">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Hello" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gL7-kK-5Ir">
-                                                <rect key="frame" x="0.0" y="46" width="343" height="183.5"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gL7-kK-5Ir">
+                                                <rect key="frame" x="0.0" y="40" width="343" height="189.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -305,20 +305,19 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iKa-Ql-SI2">
                                         <rect key="frame" x="0.0" y="239.5" width="343" height="229.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-Ba-lpI">
-                                                <rect key="frame" x="0.0" y="0.0" width="95" height="36"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="French" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cK3-Em-lDu">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="36" id="iLc-F6-vs9"/>
-                                                    <constraint firstAttribute="width" constant="95" id="v5T-00-7T9"/>
+                                                    <constraint firstAttribute="width" constant="100" id="c4Q-DM-Me5"/>
+                                                    <constraint firstAttribute="height" constant="30" id="rHX-18-Fze"/>
                                                 </constraints>
+                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                                <state key="normal" title="fr">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pbp-i7-3vX">
-                                                <rect key="frame" x="0.0" y="46" width="343" height="183.5"/>
+                                                <rect key="frame" x="0.0" y="40" width="343" height="189.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
@@ -357,10 +356,12 @@
                     <tabBarItem key="tabBarItem" title="Translation" id="nZc-xb-cu0"/>
                     <navigationItem key="navigationItem" title="Translation" id="sQl-9g-R3b"/>
                     <connections>
-                        <outlet property="fromLanguageButton" destination="P1H-uf-9cI" id="E0N-al-DIN"/>
+                        <outlet property="activityIndicator" destination="m9c-2t-qts" id="ogG-Fh-b4Z"/>
+                        <outlet property="fromLanguageTextView" destination="p4v-Ne-hxk" id="Iok-Je-bco"/>
                         <outlet property="fromTextView" destination="gL7-kK-5Ir" id="KnY-pi-Edj"/>
-                        <outlet property="toLanguageButton" destination="a5Z-Ba-lpI" id="rtF-sg-nmY"/>
+                        <outlet property="toLanguageTextView" destination="cK3-Em-lDu" id="GlU-4b-apj"/>
                         <outlet property="toTextView" destination="pbp-i7-3vX" id="o8g-qL-A8A"/>
+                        <outlet property="translateButton" destination="gm9-rO-R7X" id="M6K-Tb-7hD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MJV-G3-nJB" userLabel="First Responder" sceneMemberID="firstResponder"/>

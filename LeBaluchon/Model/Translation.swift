@@ -20,4 +20,15 @@ struct TranslatedText: Decodable {
     let translatedText: String
 }
 
+struct LanguagesList: Decodable {
+    let data: Languages
+}
 
+struct Languages: Decodable {
+    let languages: [Language]
+}
+
+struct Language: Decodable {
+    let language: String
+    let name: String
+}

@@ -9,27 +9,34 @@
 import UIKit
 
 class WeatherVC: UIViewController {
-
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    var weatherService = WeatherService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        getWeather()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func getWeather() {
+        guard let request = weatherService.createWeatherRequest() else { return }
+        
+        toggleActivityIndicator(shown: true)
+        weatherService.get(request: request) { (success, weather: Weather?) in
+            self.toggleActivityIndicator(shown: false)
+            if success, let weather = weather {
+                //self.weatherService.languages = languageList.data.languages
+                self.weatherService.weathers = weather.query.results.channel
+                
+            } else {
+                // Alert
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func toggleActivityIndicator(shown: Bool) {
+        activityIndicator.isHidden = !shown
     }
-    */
-
 }

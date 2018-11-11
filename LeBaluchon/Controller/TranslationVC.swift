@@ -20,8 +20,6 @@ class TranslationVC: UIViewController {
     var translationService = TranslationService()
     var picker = UIPickerView()
     
-    //let languages = ["Français", "Anglais", "Chinois"]
-    
     var test: String = ""
     
     override func viewDidLoad() {

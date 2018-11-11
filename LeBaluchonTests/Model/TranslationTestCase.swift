@@ -108,4 +108,24 @@ class TranslationTestCase: XCTestCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenLanguageIsFrench_WhenCallLanguageCode_ThenShouldReturnfr() {
+        let translationService = TranslationService()
+        
+        let request = translationService.createLanguagesRequest()
+        
+        translationService.languages = [Language(language: "fr", name: "French"),Language(language: "en", name: "English")]
+        
+        XCTAssertEqual(translationService.languageCode(languageName: "French"), "fr")
+        
+    }
+    
+    func testGivenLanguageIsTruc_WhenCallLanguageCode_ThenShouldReturnNothing() {
+        let translationService = TranslationService()
+        
+        translationService.languages = [Language(language: "fr", name: "French"),Language(language: "en", name: "English")]
+        
+        XCTAssertEqual(translationService.languageCode(languageName: "Truc"), "")
+        
+    }
 }

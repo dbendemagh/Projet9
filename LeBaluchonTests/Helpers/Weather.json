@@ -1,0 +1,41 @@
+{
+    "query": {
+        "count": 2,
+        "created": "2018-11-11T13:32:22Z",
+        "lang": "en-US",
+        "results": {
+            "channel": [
+                {
+                    "location": {
+                        "city": "Chantilly",
+                        "country": "France",
+                        "region": " Picardy"
+                    },
+                    "item": {
+                        "condition": {
+                            "code": "11",
+                            "date": "Sun, 11 Nov 2018 12:00 PM CET",
+                            "temp": "53",
+                            "text": "Showers"
+                        }
+                    }
+                },
+                {
+                    "location": {
+                        "city": "New York",
+                        "country": "United States",
+                        "region": " NY"
+                    },
+                    "item": {
+                        "condition": {
+                            "code": "32",
+                            "date": "Sun, 11 Nov 2018 07:00 AM EST",
+                            "temp": "33",
+                            "text": "Sunny"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

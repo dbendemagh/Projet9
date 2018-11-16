@@ -43,7 +43,7 @@ class TranslationVC: UIViewController {
                 self.translationService.languages = languageList.data.languages
     
             } else {
-                // Alert
+                self.displayAlert(title: "Network error", message: "Cannot retrieve languages list")
             }
         }
     }
@@ -53,8 +53,8 @@ class TranslationVC: UIViewController {
     }
     
     func translate() {
-        guard let text = fromTextView.text else {
-            // Alert
+        guard let text = fromTextView.text, fromTextView.text != "" else {
+            self.displayAlert(title: "No text", message: "Enter a text to translate")
             return
         }
         
@@ -78,6 +78,8 @@ class TranslationVC: UIViewController {
             if success, let translation = translation {
                 self.toTextView.text = translation.data.translations[0].translatedText
                 self.test = "ok"
+            } else {
+                self.displayAlert(title: "Network error", message: "Cannot retrieve translation")
             }
         }
         

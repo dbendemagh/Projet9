@@ -97,10 +97,10 @@ class WeatherTestCase: XCTestCase {
             // Then
             XCTAssertTrue(success)
             XCTAssertNotNil(weather)
-            XCTAssertEqual(weather?.query.results.channel[0].item.condition.temp, "53")
-            XCTAssertEqual(weather?.query.results.channel[0].item.condition.text, "Showers")
-            XCTAssertEqual(weather?.query.results.channel[1].item.condition.temp, "33")
-            XCTAssertEqual(weather?.query.results.channel[1].item.condition.text, "Sunny")
+            XCTAssertEqual(weather?.query.results.channel[0].item.condition.temp, "11")
+            XCTAssertEqual(weather?.query.results.channel[0].item.condition.text, "Sunny")
+            XCTAssertEqual(weather?.query.results.channel[1].item.condition.temp, "7")
+            XCTAssertEqual(weather?.query.results.channel[1].item.condition.text, "Rain")
             expectation.fulfill()
         }
         

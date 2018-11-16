@@ -31,7 +31,6 @@ struct Channel: Decodable {
 struct Location: Decodable {
     let city: String
     let country: String
-    //let region: String
 }
 
 struct Item: Decodable {

@@ -57,8 +57,7 @@ class ExchangeRateVC: UIViewController {
             if success, let currencyName = currencyName?.symbols {
                 self.currencyService.currencies = currencyName
             } else {
-                // Alert
-                print("Cannot load currency symbols")
+                self.displayAlert(title: "Network error", message: "Cannot retrieve currency symbols")
             }
         }
     }
@@ -77,19 +76,19 @@ class ExchangeRateVC: UIViewController {
                     self.updateDisplay()
                 }
             } else {
-                // Alert
+                self.displayAlert(title: "Network error", message: "Cannot retrieve exchange rate")
             }
         }
     }
     
     func convert() {
-        guard let fromValueText = fromValueTextView.text else {
-            // Alert null
+        guard let fromValueText = fromValueTextView.text, fromValueTextView.text != "" else {
+            self.displayAlert(title: "No entry", message: "Enter a value to convert")
             return
         }
         
         guard let fromValue = Double(fromValueText) else {
-            // Alert
+            self.displayAlert(title: "Incorrect value", message: "Enter a valid value to convert")
             return
         }
         
@@ -112,8 +111,7 @@ class ExchangeRateVC: UIViewController {
                     self.toValueTextView.text = result.fraction2()
                 }
             } else {
-                // Alert
-                print("erreur")
+                self.displayAlert(title: "Network error", message: "Cannot retrieve exchange rate")
             }
         }
     }
@@ -124,6 +122,7 @@ class ExchangeRateVC: UIViewController {
         let toEuro: Double = 1 / currencyService.currentExchangeRate
         toEuroLabel.text = "1 \(currencyService.currentToCurrency) = " + toEuro.fraction2() + " EUR"
     }
+    
     
     // Hide Keyboard
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

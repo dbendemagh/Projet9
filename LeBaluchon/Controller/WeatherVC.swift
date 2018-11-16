@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherVC: UIViewController {
     
+    @IBOutlet weak var weatherTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var weatherService = WeatherService()
@@ -27,16 +28,33 @@ class WeatherVC: UIViewController {
         weatherService.get(request: request) { (success, weather: Weather?) in
             self.toggleActivityIndicator(shown: false)
             if success, let weather = weather {
-                //self.weatherService.languages = languageList.data.languages
                 self.weatherService.weathers = weather.query.results.channel
-                
+                self.weatherTableView.reloadData()
             } else {
-                // Alert
+                self.displayAlert(title: "Network error", message: "Cannot retrieve weather")
             }
         }
     }
     
     private func toggleActivityIndicator(shown: Bool) {
         activityIndicator.isHidden = !shown
+    }
+}
+
+extension WeatherVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return weatherService.weathers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as? WeatherTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let weather = weatherService.weathers[indexPath.row]
+        
+        cell.configure(city: weather.location.city, temp: weather.item.condition.temp, image: "test")
+        
+        return cell
     }
 }

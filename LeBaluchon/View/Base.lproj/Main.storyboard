@@ -48,10 +48,6 @@
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dje-bz-Cp0">
-                                <rect key="frame" x="0.0" y="368" width="375" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lq-NR-Y8H">
                                 <rect key="frame" x="15" y="553" width="345" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -69,15 +65,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Euro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nR7-6U-3RB">
                                 <rect key="frame" x="16" y="159" width="343" height="19"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR -&gt; USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybG-7j-48Y">
-                                <rect key="frame" x="16" y="94" width="343" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="tUS-Vi-57P"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -145,33 +132,60 @@
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="dfK-Hc-6ix">
+                                <rect key="frame" x="97.5" y="99" width="180.5" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42Q-6L-WUo">
+                                        <rect key="frame" x="0.0" y="0.0" width="50.5" height="40"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0L-n3-F1p">
+                                        <rect key="frame" x="59.5" y="0.0" width="60" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="78z-oU-8nc"/>
+                                            <constraint firstAttribute="width" constant="60" id="eEI-7A-Y4k"/>
+                                        </constraints>
+                                        <state key="normal" image="iconfinder_icon-arrow-right_2867862"/>
+                                        <connections>
+                                            <action selector="currenciesButtonTapped:" destination="vlM-yc-s5P" eventType="touchUpInside" id="BjE-jO-1Kw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9c-Vm-xQy">
+                                        <rect key="frame" x="128.5" y="0.0" width="52" height="40"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="nR7-6U-3RB" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="0M8-sf-mqz"/>
+                            <constraint firstItem="dfK-Hc-6ix" firstAttribute="centerX" secondItem="a3x-xW-Ay7" secondAttribute="centerX" id="0o4-U1-AZd"/>
                             <constraint firstItem="890-Nr-onH" firstAttribute="top" secondItem="uZW-qs-MPe" secondAttribute="bottom" constant="25" id="25I-xY-x9F"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="F5j-9W-8ZI" secondAttribute="trailing" constant="16" id="2DN-xh-ps1"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="u02-T7-wlv" secondAttribute="trailing" constant="16" id="5fr-R0-DMd"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="890-Nr-onH" secondAttribute="trailing" constant="16" id="63U-mr-K8D"/>
                             <constraint firstItem="160-3T-ilt" firstAttribute="centerY" secondItem="0lq-NR-Y8H" secondAttribute="centerY" id="6p6-xE-ISV"/>
                             <constraint firstItem="u02-T7-wlv" firstAttribute="leading" secondItem="W7t-2l-2Yf" secondAttribute="trailing" constant="3" id="ALb-SS-1Us"/>
-                            <constraint firstItem="ybG-7j-48Y" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="H8k-6e-BJk"/>
+                            <constraint firstItem="dfK-Hc-6ix" firstAttribute="top" secondItem="AtA-RX-IAF" secondAttribute="top" constant="35" id="Au9-CZ-YWF"/>
                             <constraint firstItem="F5j-9W-8ZI" firstAttribute="top" secondItem="oK5-tR-LOS" secondAttribute="bottom" constant="3" id="IFS-4t-Um7"/>
-                            <constraint firstItem="nR7-6U-3RB" firstAttribute="top" secondItem="ybG-7j-48Y" secondAttribute="bottom" constant="25" id="KUL-zZ-UVT"/>
                             <constraint firstItem="0lq-NR-Y8H" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="15" id="L3l-ou-P6M"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="nR7-6U-3RB" secondAttribute="trailing" constant="16" id="MHu-Gb-KfR"/>
+                            <constraint firstItem="nR7-6U-3RB" firstAttribute="top" secondItem="dfK-Hc-6ix" secondAttribute="bottom" constant="20" id="MsF-2s-eNV"/>
                             <constraint firstItem="W7t-2l-2Yf" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="N7k-1a-fhQ"/>
                             <constraint firstItem="F5j-9W-8ZI" firstAttribute="leading" secondItem="uZW-qs-MPe" secondAttribute="trailing" constant="3" id="Pwn-NB-JUW"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="oK5-tR-LOS" secondAttribute="trailing" constant="16" id="U5t-0t-xkE"/>
-                            <constraint firstItem="ybG-7j-48Y" firstAttribute="top" secondItem="AtA-RX-IAF" secondAttribute="top" constant="30" id="VPP-uj-J7H"/>
                             <constraint firstItem="u02-T7-wlv" firstAttribute="top" secondItem="nR7-6U-3RB" secondAttribute="bottom" constant="3" id="aL9-XA-kze"/>
                             <constraint firstItem="uZW-qs-MPe" firstAttribute="top" secondItem="oK5-tR-LOS" secondAttribute="bottom" constant="3" id="adH-qt-7u9"/>
                             <constraint firstItem="oK5-tR-LOS" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="apG-dH-gYL"/>
                             <constraint firstItem="890-Nr-onH" firstAttribute="leading" secondItem="AtA-RX-IAF" secondAttribute="leading" constant="16" id="ar9-sJ-c62"/>
                             <constraint firstItem="160-3T-ilt" firstAttribute="centerX" secondItem="0lq-NR-Y8H" secondAttribute="centerX" id="fy4-Cv-U7X"/>
                             <constraint firstItem="oK5-tR-LOS" firstAttribute="top" secondItem="W7t-2l-2Yf" secondAttribute="bottom" constant="15" id="nUL-ND-Dak"/>
-                            <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="ybG-7j-48Y" secondAttribute="trailing" constant="16" id="qpS-Hw-PFm"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="bottom" secondItem="0lq-NR-Y8H" secondAttribute="bottom" constant="15" id="t8N-VI-CEA"/>
                             <constraint firstItem="AtA-RX-IAF" firstAttribute="trailing" secondItem="0lq-NR-Y8H" secondAttribute="trailing" constant="15" id="wSm-Rp-Jly"/>
                             <constraint firstItem="W7t-2l-2Yf" firstAttribute="top" secondItem="nR7-6U-3RB" secondAttribute="bottom" constant="3" id="wXe-a2-507"/>
@@ -185,17 +199,17 @@
                     <tabBarItem key="tabBarItem" title="Exchange Rate" id="HSU-iy-9oz"/>
                     <navigationItem key="navigationItem" title="Exchange Rate" id="JBX-5Z-2ai"/>
                     <connections>
-                        <outlet property="ConversionLabel" destination="ybG-7j-48Y" id="pyo-Va-1jV"/>
                         <outlet property="activityIndicator" destination="160-3T-ilt" id="IzX-ZM-HBm"/>
                         <outlet property="convertButton" destination="0lq-NR-Y8H" id="1Uk-Gb-6Fs"/>
-                        <outlet property="currenciesPickerView" destination="Dje-bz-Cp0" id="v4p-sg-O2N"/>
-                        <outlet property="fromCurrencyLabel" destination="nR7-6U-3RB" id="RA1-VW-SyG"/>
-                        <outlet property="fromCurrencyTextField" destination="u02-T7-wlv" id="5XP-ZR-eTQ"/>
-                        <outlet property="fromEuroLabel" destination="GT2-Lc-kwP" id="TMY-PS-hrd"/>
+                        <outlet property="fromCurrencyCodeLabel" destination="42Q-6L-WUo" id="JoE-cw-iCt"/>
+                        <outlet property="fromCurrencyCodeTextField" destination="u02-T7-wlv" id="5XP-ZR-eTQ"/>
+                        <outlet property="fromCurrencyNameLabel" destination="nR7-6U-3RB" id="RA1-VW-SyG"/>
+                        <outlet property="fromUnitConversionLabel" destination="GT2-Lc-kwP" id="TMY-PS-hrd"/>
                         <outlet property="fromValueTextField" destination="W7t-2l-2Yf" id="lmj-vY-nZW"/>
-                        <outlet property="toCurrencyLabel" destination="oK5-tR-LOS" id="6Nu-d2-PUe"/>
-                        <outlet property="toCurrencyTextField" destination="F5j-9W-8ZI" id="GYD-kF-xoH"/>
-                        <outlet property="toEuroLabel" destination="6t6-sb-s0n" id="7nK-Eh-8Wc"/>
+                        <outlet property="toCurrencyCodeLabel" destination="p9c-Vm-xQy" id="d5c-Sh-Fp4"/>
+                        <outlet property="toCurrencyCodeTextField" destination="F5j-9W-8ZI" id="GYD-kF-xoH"/>
+                        <outlet property="toCurrencyNameLabel" destination="oK5-tR-LOS" id="6Nu-d2-PUe"/>
+                        <outlet property="toUnitConversionLabel" destination="6t6-sb-s0n" id="7nK-Eh-8Wc"/>
                         <outlet property="toValueTextField" destination="uZW-qs-MPe" id="ACF-s4-Z6V"/>
                     </connections>
                 </viewController>
@@ -485,4 +499,7 @@
             <point key="canvasLocation" x="457" y="893"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconfinder_icon-arrow-right_2867862" width="128" height="128"/>
+    </resources>
 </document>

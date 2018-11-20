@@ -10,18 +10,19 @@ import UIKit
 
 class ExchangeRateVC: UIViewController {
     
-    @IBOutlet weak var ConversionLabel: UILabel!
+    
+    @IBOutlet weak var fromCurrencyCodeLabel: UILabel!
+    @IBOutlet weak var toCurrencyCodeLabel: UILabel!
     @IBOutlet weak var fromValueTextField: UITextField!
-    @IBOutlet weak var fromCurrencyTextField: UITextField!
+    @IBOutlet weak var fromCurrencyCodeTextField: UITextField!
     @IBOutlet weak var toValueTextField: UITextField!
-    @IBOutlet weak var toCurrencyTextField: UITextField!
-    @IBOutlet weak var currenciesPickerView: UIPickerView!
+    @IBOutlet weak var toCurrencyCodeTextField: UITextField!
     @IBOutlet weak var convertButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var fromEuroLabel: UILabel!
-    @IBOutlet weak var toEuroLabel: UILabel!
-    @IBOutlet weak var fromCurrencyLabel: UILabel!
-    @IBOutlet weak var toCurrencyLabel: UILabel!
+    @IBOutlet weak var fromUnitConversionLabel: UILabel!
+    @IBOutlet weak var toUnitConversionLabel: UILabel!
+    @IBOutlet weak var fromCurrencyNameLabel: UILabel!
+    @IBOutlet weak var toCurrencyNameLabel: UILabel!
     
     //private let apiService = APIService()
     public var currencyService = CurrencyService()
@@ -56,8 +57,8 @@ class ExchangeRateVC: UIViewController {
         fromCurrencyPicker.delegate = self
         toCurrencyPicker.delegate = self
         
-        fromCurrencyTextField.inputView = fromCurrencyPicker
-        toCurrencyTextField.inputView = toCurrencyPicker
+        fromCurrencyCodeTextField.inputView = fromCurrencyPicker
+        toCurrencyCodeTextField.inputView = toCurrencyPicker
     }
     
     // Add Done button to picker View
@@ -70,8 +71,8 @@ class ExchangeRateVC: UIViewController {
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
-        fromCurrencyTextField.inputAccessoryView = toolbar
-        toCurrencyTextField.inputAccessoryView = toolbar
+        fromCurrencyCodeTextField.inputAccessoryView = toolbar
+        toCurrencyCodeTextField.inputAccessoryView = toolbar
     }
     
     @IBAction func convertButtonTapped(_ sender: UIButton) {
@@ -153,21 +154,21 @@ class ExchangeRateVC: UIViewController {
     }
     
     func updateDisplay() {
-        ConversionLabel.text = currencyService.fromCurrency + " -> " + currencyService.toCurrency
+        fromCurrencyCodeLabel.text = currencyService.fromCurrency
+        toCurrencyCodeLabel.text = currencyService.toCurrency
         
-        fromCurrencyLabel.text = currencyService.currencyName(code: currencyService.fromCurrency)
-        toCurrencyLabel.text = currencyService.currencyName(code: currencyService.toCurrency)
+        fromCurrencyNameLabel.text = currencyService.currencyName(code: currencyService.fromCurrency)
+        toCurrencyNameLabel.text = currencyService.currencyName(code: currencyService.toCurrency)
         
-        fromEuroLabel.text = "1 \(currencyService.fromCurrency) = \(currencyService.exchangeRate.fraction(6)) \(currencyService.toCurrency)"
-        
+        fromUnitConversionLabel.text = "1 \(currencyService.fromCurrency) = \(currencyService.exchangeRate.fraction(6)) \(currencyService.toCurrency)"
         let toValue: Double = 1 / currencyService.exchangeRate
-        toEuroLabel.text = "1 \(currencyService.toCurrency) = \(toValue.fraction(6)) \(currencyService.fromCurrency)"
+        toUnitConversionLabel.text = "1 \(currencyService.toCurrency) = \(toValue.fraction(6)) \(currencyService.fromCurrency)"
     }
     
     @objc func endEditing() {
         view.endEditing(true)
-        currencyService.fromCurrency = fromCurrencyTextField.text!
-        currencyService.toCurrency = toCurrencyTextField.text!
+        currencyService.fromCurrency = fromCurrencyCodeTextField.text!
+        currencyService.toCurrency = toCurrencyCodeTextField.text!
         toValueTextField.text = ""
         getLastExchangeRate()
         
@@ -185,6 +186,24 @@ class ExchangeRateVC: UIViewController {
         activityIndicator.isHidden = !shown
     }
     
+    // Invert currencies
+    @IBAction func currenciesButtonTapped(_ sender: UIButton) {
+        reverseCurrencies()
+    }
+    
+    func reverseCurrencies() {
+        currencyService.reverseCurrencies()
+        
+        let toValue = fromValueTextField.text
+        
+        fromValueTextField.text = toValueTextField.text
+        toValueTextField.text = toValue
+        
+        fromCurrencyCodeTextField.text = currencyService.fromCurrency
+        toCurrencyCodeTextField.text = currencyService.toCurrency
+        
+        updateDisplay()
+    }
 }
 
 extension ExchangeRateVC: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -206,9 +225,9 @@ extension ExchangeRateVC: UIPickerViewDelegate, UIPickerViewDataSource {
         //originalCurrency = currency
         
         if pickerView == fromCurrencyPicker {
-            fromCurrencyTextField.text = currency
+            fromCurrencyCodeTextField.text = currency
         } else if pickerView == toCurrencyPicker {
-            toCurrencyTextField.text = currency
+            toCurrencyCodeTextField.text = currency
         }
     }
 }

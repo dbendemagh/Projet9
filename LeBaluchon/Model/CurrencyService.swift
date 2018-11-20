@@ -84,5 +84,16 @@ class CurrencyService: APIService {
             let toExchangeRate: Double = exchangeRates[toCurrency] else { return nil }
         return toExchangeRate / fromExchangeRate
     }
+    
+    func reverseCurrencies() {
+        let currency = fromCurrency
+        let exchangeRate = fromExchangeRate
+        
+        fromCurrency = toCurrency
+        toCurrency = currency
+        
+        fromExchangeRate = toExchangeRate
+        toExchangeRate = exchangeRate
+    }
 }
 

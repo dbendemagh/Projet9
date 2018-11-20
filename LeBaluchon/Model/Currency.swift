@@ -8,11 +8,18 @@
 
 import Foundation
 
+// Json
 struct CurrencyName: Decodable {
     let symbols: [String: String]
 }
 
 struct ExchangeRate: Decodable {
+    let timestamp: Int
     let rates: [String: Double]
 }
 
+// 
+struct Currency {
+    let code: String
+    let name: String
+}

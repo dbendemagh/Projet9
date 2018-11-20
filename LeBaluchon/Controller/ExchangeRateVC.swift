@@ -11,15 +11,17 @@ import UIKit
 class ExchangeRateVC: UIViewController {
     
     @IBOutlet weak var ConversionLabel: UILabel!
-    @IBOutlet weak var fromValueTextView: UITextField!
-    @IBOutlet weak var fromCurrencyTextView: UITextField!
-    @IBOutlet weak var toValueTextView: UITextField!
-    @IBOutlet weak var toCurrencyTextView: UITextField!
+    @IBOutlet weak var fromValueTextField: UITextField!
+    @IBOutlet weak var fromCurrencyTextField: UITextField!
+    @IBOutlet weak var toValueTextField: UITextField!
+    @IBOutlet weak var toCurrencyTextField: UITextField!
     @IBOutlet weak var currenciesPickerView: UIPickerView!
     @IBOutlet weak var convertButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var fromEuroLabel: UILabel!
     @IBOutlet weak var toEuroLabel: UILabel!
+    @IBOutlet weak var fromCurrencyLabel: UILabel!
+    @IBOutlet weak var toCurrencyLabel: UILabel!
     
     //private let apiService = APIService()
     public var currencyService = CurrencyService()
@@ -31,23 +33,52 @@ class ExchangeRateVC: UIViewController {
         return pickerView
     }()
     
-    var originalCurrency: String = ""
-    var conversionCurrency: String = ""
+    //var originalCurrency: String = ""
+    //var conversionCurrency: String = ""
+    
+    let fromCurrencyPicker = UIPickerView()
+    let toCurrencyPicker = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getCurrencySymbols()
         getLastExchangeRate()
         
-        //originalValueTextView.inputView = currenciesPickerView
-        //originalCurrencyButton.inputView = currenciesPickerView
-        currencyService.currentToCurrency = "USD"
+        currencyService.fromCurrency = "EUR"
+        currencyService.toCurrency = "USD"
+        
+        createCurrenciesPicker()
+        createToolbar()
+    }
+    
+    // Picker View for currency choice
+    func createCurrenciesPicker() {
+        fromCurrencyPicker.delegate = self
+        toCurrencyPicker.delegate = self
+        
+        fromCurrencyTextField.inputView = fromCurrencyPicker
+        toCurrencyTextField.inputView = toCurrencyPicker
+    }
+    
+    // Add Done button to picker View
+    func createToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExchangeRateVC.endEditing))
+        
+        toolbar.setItems([doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        fromCurrencyTextField.inputAccessoryView = toolbar
+        toCurrencyTextField.inputAccessoryView = toolbar
     }
     
     @IBAction func convertButtonTapped(_ sender: UIButton) {
         convert()
     }
     
+    // Retrieve currency list
     func getCurrencySymbols() {
         let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
         
@@ -55,24 +86,32 @@ class ExchangeRateVC: UIViewController {
         currencyService.get(request: request) { (success, currencyName: CurrencyName?) in
             self.toggleActivityIndicator(shown: false)
             if success, let currencyName = currencyName?.symbols {
-                self.currencyService.currencies = currencyName
+                // Convert dictionnary to Currency struct and sort by name
+                self.currencyService.currencies = currencyName.map({return Currency(code: $0.key, name: $0.value) }).sorted(by: {$0.name < $1.name})
+                print(self.currencyService.sortedCurrencies)
+                print(self.currencyService.currencies)
             } else {
                 self.displayAlert(title: "Network error", message: "Cannot retrieve currency symbols")
             }
         }
     }
     
+    // Retrieve last Exchange rate
     func getLastExchangeRate() {
-        currencyService.currentExchangeRate = 0
+        currencyService.fromExchangeRate = 0
+        currencyService.toExchangeRate = 0
         
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currency: "USD")
+        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true)
         
         toggleActivityIndicator(shown: true)
         currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
             self.toggleActivityIndicator(shown: false)
             if success, let exchangeRate = exchangeRate {
-                if let currentExchangeRate = exchangeRate.rates["USD"] {
-                    self.currencyService.currentExchangeRate = currentExchangeRate
+                self.currencyService.exchangeRates = exchangeRate.rates
+                if let fromExchangeRate = exchangeRate.rates[self.currencyService.fromCurrency],
+                    let toExchangeRate = exchangeRate.rates[self.currencyService.toCurrency] {
+                    self.currencyService.fromExchangeRate = fromExchangeRate
+                    self.currencyService.toExchangeRate = toExchangeRate
                     self.updateDisplay()
                 }
             } else {
@@ -82,7 +121,7 @@ class ExchangeRateVC: UIViewController {
     }
     
     func convert() {
-        guard let fromValueText = fromValueTextView.text, fromValueTextView.text != "" else {
+        guard let fromValueText = fromValueTextField.text, fromValueTextField.text != "" else {
             self.displayAlert(title: "No entry", message: "Enter a value to convert")
             return
         }
@@ -92,23 +131,20 @@ class ExchangeRateVC: UIViewController {
             return
         }
         
-        guard let toCurrency = toCurrencyTextView.text else {
-            return
-        }
-        
         // Calculate with the last exchange rate
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currency: toCurrency)
+        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true)
         
-        getLastExchangeRate()
         toggleActivityIndicator(shown: true)
         currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
             self.toggleActivityIndicator(shown: false)
             if success, let exchangeRate = exchangeRate {
-                if let currentExchangeRate = exchangeRate.rates[toCurrency] {
-                    self.currencyService.currentExchangeRate = currentExchangeRate
+                if let fromExchangeRate = exchangeRate.rates[self.currencyService.fromCurrency],
+                    let toExchangeRate = exchangeRate.rates[self.currencyService.toCurrency] {
+                    self.currencyService.fromExchangeRate = fromExchangeRate
+                    self.currencyService.toExchangeRate = toExchangeRate
                     self.updateDisplay()
-                    let result = fromValue * currentExchangeRate
-                    self.toValueTextView.text = result.fraction2()
+                    let result = fromValue * self.currencyService.exchangeRate
+                    self.toValueTextField.text = result.fraction(2)
                 }
             } else {
                 self.displayAlert(title: "Network error", message: "Cannot retrieve exchange rate")
@@ -117,17 +153,31 @@ class ExchangeRateVC: UIViewController {
     }
     
     func updateDisplay() {
-        ConversionLabel.text = "EUR -> USD"
-        fromEuroLabel.text = "1 EUR = " + currencyService.currentExchangeRate.fraction2() + " \(toCurrencyTextView.text!)"
-        let toEuro: Double = 1 / currencyService.currentExchangeRate
-        toEuroLabel.text = "1 \(currencyService.currentToCurrency) = " + toEuro.fraction2() + " EUR"
+        ConversionLabel.text = currencyService.fromCurrency + " -> " + currencyService.toCurrency
+        
+        fromCurrencyLabel.text = currencyService.currencyName(code: currencyService.fromCurrency)
+        toCurrencyLabel.text = currencyService.currencyName(code: currencyService.toCurrency)
+        
+        fromEuroLabel.text = "1 \(currencyService.fromCurrency) = \(currencyService.exchangeRate.fraction(6)) \(currencyService.toCurrency)"
+        
+        let toValue: Double = 1 / currencyService.exchangeRate
+        toEuroLabel.text = "1 \(currencyService.toCurrency) = \(toValue.fraction(6)) \(currencyService.fromCurrency)"
     }
     
+    @objc func endEditing() {
+        view.endEditing(true)
+        currencyService.fromCurrency = fromCurrencyTextField.text!
+        currencyService.toCurrency = toCurrencyTextField.text!
+        toValueTextField.text = ""
+        getLastExchangeRate()
+        
+        updateDisplay()
+    }
     
     // Hide Keyboard
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        fromValueTextView.resignFirstResponder()
-        toValueTextView.resignFirstResponder()
+        fromValueTextField.resignFirstResponder()
+        toValueTextField.resignFirstResponder()
     }
     
     private func toggleActivityIndicator(shown: Bool) {
@@ -147,14 +197,18 @@ extension ExchangeRateVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let currency = Array(currencyService.currencies)[row].key
+        let currency = currencyService.currencies[row].name
         return currency
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let currency = Array(currencyService.currencies)[row].key
-        originalCurrency = currency
-        fromCurrencyTextView.text = currency
+        let currency = currencyService.currencies[row].code
+        //originalCurrency = currency
         
+        if pickerView == fromCurrencyPicker {
+            fromCurrencyTextField.text = currency
+        } else if pickerView == toCurrencyPicker {
+            toCurrencyTextField.text = currency
+        }
     }
 }

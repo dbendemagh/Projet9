@@ -9,8 +9,8 @@
 import Foundation
 
 extension Double {
-    func fraction2() -> String {
-        return String(format: "%.2f", self)
+    func fraction(_ value: Int) -> String {
+        return String(format: "%.\(value)f", self)
     }
     
     func fraction0() -> String {

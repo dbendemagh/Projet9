@@ -19,19 +19,38 @@ class CurrencyService: APIService {
     
     //let apiService = APIService()
     
-    var currencies: [String: String] = [:]
-    var currentToCurrency: String = "USD"
-    var currentExchangeRate: Double = 0
+    var currencies: [Currency] = []
+    
+    var sortedCurrencies: [String] = []
+    
+    var exchangeRates: [String: Double] = [:]
+    var exchangeRateTimestamp = 0
+    
+    var fromCurrency: String = "EUR"
+    var toCurrency: String = "USD"
+    
+    // Exchange rate (Euro based)
+    var fromExchangeRate: Double = 0
+    var toExchangeRate: Double = 0
+    var exchangeRate: Double {
+        get {
+            if fromCurrency == "EUR" {
+                return toExchangeRate
+            } else {
+                return toExchangeRate / fromExchangeRate
+            }
+        }
+    }
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
     }
     
-    func createFixerRequest(endPoint: String, currency: String = "") -> URLRequest {
+    func createFixerRequest(endPoint: String, currencyConversion: Bool = false) -> URLRequest {
         var urlString: String = URLFixer.baseURL + endPoint + "&access_key=" + URLFixer.apiKey
         
-        if currency != "" {
-            urlString = urlString + "&symbols=" + currency
+        if currencyConversion {
+            urlString = urlString + "&symbols=\(fromCurrency),\(toCurrency)"
         }
         
         let url = URL(string: urlString)!
@@ -42,6 +61,28 @@ class CurrencyService: APIService {
         return request
     }
     
+    func currencyName(code: String) -> String {
+        for currency in currencies {
+            if currency.code == code {
+                return currency.name
+            }
+        }
+        
+        return ""
+    }
     
+    func getExchangeRate() -> Double {
+        if fromCurrency == "EUR" {
+            return toExchangeRate
+        } else {
+            return toExchangeRate / fromExchangeRate
+        }
+    }
+    // Exchange rate based on Euro
+    func calculateExchangeRate(fromCurrency: String, toCurrency: String) -> Double? {
+        guard let fromExchangeRate: Double = exchangeRates[fromCurrency],
+            let toExchangeRate: Double = exchangeRates[toCurrency] else { return nil }
+        return toExchangeRate / fromExchangeRate
+    }
 }
 

@@ -37,6 +37,7 @@ class CurrencyService: APIService {
             if fromCurrency == "EUR" {
                 return toExchangeRate
             } else {
+                guard fromExchangeRate != 0 else { return 0 }
                 return toExchangeRate / fromExchangeRate
             }
         }
@@ -69,20 +70,6 @@ class CurrencyService: APIService {
         }
         
         return ""
-    }
-    
-    func getExchangeRate() -> Double {
-        if fromCurrency == "EUR" {
-            return toExchangeRate
-        } else {
-            return toExchangeRate / fromExchangeRate
-        }
-    }
-    // Exchange rate based on Euro
-    func calculateExchangeRate(fromCurrency: String, toCurrency: String) -> Double? {
-        guard let fromExchangeRate: Double = exchangeRates[fromCurrency],
-            let toExchangeRate: Double = exchangeRates[toCurrency] else { return nil }
-        return toExchangeRate / fromExchangeRate
     }
     
     func reverseCurrencies() {

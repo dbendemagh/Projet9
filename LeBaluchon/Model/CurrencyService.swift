@@ -12,19 +12,8 @@ class CurrencyService: APIService {
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
-    //internal var urlSession: URLSession
-    //internal var task: URLSessionDataTask?
-    
-    //var apiSession: URLSession
-    
-    //let apiService = APIService()
-    
     var currencies: [Currency] = []
-    
-    var sortedCurrencies: [String] = []
-    
     var exchangeRates: [String: Double] = [:]
-    var exchangeRateTimestamp = 0
     
     var fromCurrency: String = "EUR"
     var toCurrency: String = "USD"
@@ -33,13 +22,11 @@ class CurrencyService: APIService {
     var fromExchangeRate: Double = 0
     var toExchangeRate: Double = 0
     var exchangeRate: Double {
-        get {
-            if fromCurrency == "EUR" {
-                return toExchangeRate
-            } else {
-                guard fromExchangeRate != 0 else { return 0 }
-                return toExchangeRate / fromExchangeRate
-            }
+        if fromCurrency == "EUR" {
+            return toExchangeRate
+        } else {
+            guard fromExchangeRate != 0 else { return 0 }
+            return toExchangeRate / fromExchangeRate
         }
     }
     
@@ -62,14 +49,14 @@ class CurrencyService: APIService {
         return request
     }
     
-    func currencyName(code: String) -> String {
+    func currencyName(code: String) -> String? {
         for currency in currencies {
             if currency.code == code {
                 return currency.name
             }
         }
         
-        return ""
+        return nil
     }
     
     func reverseCurrencies() {

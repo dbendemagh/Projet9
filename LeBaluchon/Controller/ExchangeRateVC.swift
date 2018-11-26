@@ -89,7 +89,7 @@ class ExchangeRateVC: UIViewController {
             if success, let currencyName = currencyName?.symbols {
                 // Convert dictionnary to Currency struct and sort by name
                 self.currencyService.currencies = currencyName.map({return Currency(code: $0.key, name: $0.value) }).sorted(by: {$0.name < $1.name})
-                print(self.currencyService.sortedCurrencies)
+                //print(self.currencyService.sortedCurrencies)
                 print(self.currencyService.currencies)
             } else {
                 self.displayAlert(title: "Network error", message: "Cannot retrieve currency symbols")

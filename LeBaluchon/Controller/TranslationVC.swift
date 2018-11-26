@@ -16,6 +16,7 @@ class TranslationVC: UIViewController {
     @IBOutlet weak var toTextView: UITextView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var reverseButton: UIButton!
     
     var translationService = TranslationService()
     var picker = UIPickerView()
@@ -31,6 +32,7 @@ class TranslationVC: UIViewController {
         fromTextView.text = "Hello"
         toTextView.text = ""
         
+        reverseButton.imageView?.contentMode = .scaleAspectFit
     }
     
     func getLanguages() {
@@ -94,6 +96,18 @@ class TranslationVC: UIViewController {
     private func toggleActivityIndicator(shown: Bool) {
         translateButton.isHidden = shown
         activityIndicator.isHidden = !shown
+    }
+    
+    @IBAction func reverseButtonTapped(_ sender: UIButton) {
+        translationService.reverseLangages()
+        
+        let toLangage = fromLanguageTextView.text
+        fromLanguageTextView.text = toLanguageTextView.text
+        toLanguageTextView.text = toLangage
+        
+        let toText = fromTextView.text
+        fromTextView.text = toTextView.text
+        toTextView.text = toText
     }
 }
 

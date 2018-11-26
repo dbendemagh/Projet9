@@ -53,7 +53,9 @@ extension WeatherVC: UITableViewDataSource {
         
         let weather = weatherService.weathers[indexPath.row]
         
-        cell.configure(city: weather.location.city, temp: weather.item.condition.temp, image: "test")
+        let date = weather.item.condition.date.split(separator: " ")
+        let time = "\(date[4]) \(date[5])"
+        cell.configure(city: weather.location.city, temp: weather.item.condition.temp, description: weather.item.condition.text, time: time, image: weather.item.condition.code)
         
         return cell
     }

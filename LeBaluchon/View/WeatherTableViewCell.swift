@@ -12,6 +12,8 @@ class WeatherTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var weatherImageView: UIImageView!
     
     
@@ -26,10 +28,12 @@ class WeatherTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(city: String, temp: String, image: String) {
+    func configure(city: String, temp: String, description: String, time: String, image: String) {
         cityLabel.text = city
         tempLabel.text = temp + " °"
-        //weatherImageView.image = UIImage(named: image)
+        descriptionLabel.text = description
+        timeLabel.text = time
+        weatherImageView.image = UIImage(named: image)
     }
 
 }

@@ -23,16 +23,55 @@ class TranslationVC: UIViewController {
     
     var test: String = ""
     
+    lazy var fromLangagePickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        return pickerView
+    }()
+    
+    lazy var toLangagePickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        return pickerView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //translatedTextView.isEditable = false
         getLanguages()
         
         fromTextView.text = "Hello"
         toTextView.text = ""
         
         reverseButton.imageView?.contentMode = .scaleAspectFit
+        
+    }
+    
+    // Picker View for currency choice
+    func setupCurrenciesPicker() {
+//        fromLangagePicker.delegate = self
+//        toLangagePicker.delegate = self
+        
+        fromLanguageTextView.inputView = fromLangagePickerView
+        toLanguageTextView.inputView = toLangagePickerView
+        fromLanguageTextView.isEnabled = true
+        toLanguageTextView.isEnabled = true
+    }
+    
+    // Add Done button to picker View
+    func createToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExchangeRateVC.endEditing))
+        
+        toolbar.setItems([doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        fromLanguageTextView.inputAccessoryView = toolbar
+        toLanguageTextView.inputAccessoryView = toolbar
     }
     
     func getLanguages() {
@@ -43,11 +82,18 @@ class TranslationVC: UIViewController {
             self.toggleActivityIndicator(shown: false)
             if success, let languageList = languagesList {
                 self.translationService.languages = languageList.data.languages
-    
+                self.setupCurrenciesPicker()
+                self.createToolbar()
             } else {
                 self.displayAlert(title: "Network error", message: "Cannot retrieve languages list")
             }
         }
+    }
+    
+    @objc func endEditing() {
+        view.endEditing(true)
+        translationService.fromLangage = translationService.languageCode(languageName: fromLanguageTextView.text!)
+        translationService.toLangage = translationService.languageCode(languageName: toLanguageTextView.text!)
     }
     
     @IBAction func TranslateButtonTapped(_ sender: UIButton) {
@@ -60,33 +106,15 @@ class TranslationVC: UIViewController {
             return
         }
         
-        guard let fromLanguage = fromLanguageTextView.text else {
-            // Alert
-            return
-        }
-        
-        let source = translationService.languageCode(languageName: fromLanguage)
-        
-        guard let toLanguage = toLanguageTextView.text else {
-            // Alert
-            return
-        }
-        
-        let target = translationService.languageCode(languageName: toLanguage)
-        
-        let request = translationService.createTranslationRequest(source: source, target: target, text: text)
+        let request = translationService.createTranslationRequest(text: text)
         
         translationService.get(request: request) { (success, translation: Translation?) in
             if success, let translation = translation {
                 self.toTextView.text = translation.data.translations[0].translatedText
-                self.test = "ok"
             } else {
                 self.displayAlert(title: "Network error", message: "Cannot retrieve translation")
             }
         }
-        
-        //translationService.getTranslation(source: fromLanguage, target: toLanguage, text: text)
-        
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -111,4 +139,29 @@ class TranslationVC: UIViewController {
     }
 }
 
+extension TranslationVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return  translationService.languages.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let currency = translationService.languages[row].name
+        return currency
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let currency = translationService.languages[row].name
+        //originalCurrency = currency
+        
+        if pickerView == fromLangagePickerView {
+            fromLanguageTextView.text = currency
+        } else if pickerView == toLangagePickerView {
+            toLanguageTextView.text = currency
+        }
+    }
+}
 

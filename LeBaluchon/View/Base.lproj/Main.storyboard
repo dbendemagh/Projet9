@@ -91,12 +91,13 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="160-3T-ilt">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="160-3T-ilt">
                                 <rect key="frame" x="169" y="559.5" width="37" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="WFn-a8-kw8"/>
                                     <constraint firstAttribute="width" constant="37" id="hN6-nc-Son"/>
                                 </constraints>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="EUR" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u02-T7-wlv">
                                 <rect key="frame" x="269" y="181" width="90" height="40"/>
@@ -291,21 +292,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="229.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillProportionally" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="BaH-vH-3zd">
-                                                <rect key="frame" x="0.0" y="0.0" width="241.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="English" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p4v-Ne-hxk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="English" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p4v-Ne-hxk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
                                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="2tQ-19-URF"/>
-                                                            <constraint firstAttribute="width" constant="100" id="T7j-Fg-Res"/>
+                                                            <constraint firstAttribute="width" constant="250" id="T7j-Fg-Res"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNE-6R-fmO">
-                                                        <rect key="frame" x="117" y="0.0" width="124.5" height="30"/>
+                                                        <rect key="frame" x="267" y="0.0" width="76" height="30"/>
                                                         <state key="normal" image="iconfinder_swap-vert_326707"/>
                                                         <connections>
                                                             <action selector="reverseButtonTapped:" destination="E1Q-St-ezX" eventType="touchUpInside" id="fUM-vD-mQg"/>
@@ -329,11 +330,11 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iKa-Ql-SI2">
                                         <rect key="frame" x="0.0" y="239.5" width="343" height="229.5"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="French" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cK3-Em-lDu">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="French" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cK3-Em-lDu">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
                                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="c4Q-DM-Me5"/>
+                                                    <constraint firstAttribute="width" constant="250" id="c4Q-DM-Me5"/>
                                                     <constraint firstAttribute="height" constant="30" id="rHX-18-Fze"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
@@ -355,8 +356,9 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="m9c-2t-qts">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="m9c-2t-qts">
                                 <rect key="frame" x="169" y="559.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -489,7 +491,7 @@
                                     <outlet property="dataSource" destination="lM1-pt-9bZ" id="d2R-RL-eRc"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UzP-QS-gm3">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UzP-QS-gm3">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

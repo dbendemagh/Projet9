@@ -14,8 +14,8 @@ class TranslationService : APIService {
     
     var languages: [Language] = []
     
-    var fromLangage: String = "ENG"
-    var toLangage: String = "FRA"
+    var fromLangage: String = "en"
+    var toLangage: String = "fr"
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
@@ -31,14 +31,14 @@ class TranslationService : APIService {
         return request
     }
     
-    func createTranslationRequest(source: String, target: String, text: String) -> URLRequest {
+    func createTranslationRequest(text: String) -> URLRequest {
         let urlString: String = URLTranslation.baseURL
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        let body = "key=\(URLTranslation.apiKey)&source=\(source)&target=\(target)&format=text&q=\(text)"
+        let body = "key=\(URLTranslation.apiKey)&source=\(fromLangage)&target=\(toLangage)&format=text&q=\(text)"
         
         request.httpBody = body.data(using: .utf8)
         
@@ -58,14 +58,14 @@ class TranslationService : APIService {
         return nil
     }
     
-    func languageCode(languageName: String) -> String? {
+    func languageCode(languageName: String) -> String {
         for itemLanguage in languages {
             if itemLanguage.name == languageName {
                 return itemLanguage.language
             }
         }
         
-        return nil
+        return ""
     }
     
     func reverseLangages() {

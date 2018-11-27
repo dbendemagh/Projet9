@@ -20,7 +20,9 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: fakeResponseData.error))
-        let request = translationService.createTranslationRequest(source: "fr", target: "en", text: text)
+        translationService.fromLangage = "fr"
+        translationService.toLangage = "en"
+        let request = translationService.createTranslationRequest(text: text)
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -38,7 +40,9 @@ class TranslationTestCase: XCTestCase {
     func testGetTranslationShouldPostFailedCallbackIfNoData() {
         // Given
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: nil))
-        let request = translationService.createTranslationRequest(source: "fr", target: "en", text: text)
+        translationService.fromLangage = "fr"
+        translationService.toLangage = "en"
+        let request = translationService.createTranslationRequest(text: text)
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -56,7 +60,9 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseKO, error: nil))
-        let request = translationService.createTranslationRequest(source: "fr", target: "en", text: text)
+        translationService.fromLangage = "fr"
+        translationService.toLangage = "en"
+        let request = translationService.createTranslationRequest(text: text)
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -75,7 +81,9 @@ class TranslationTestCase: XCTestCase {
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         let urlSessionFake = URLSessionFake(data: fakeResponseData.incorrectData, response: fakeResponseData.responseOK, error: nil)
         var translationService = TranslationService(urlSession: urlSessionFake)
-        let request = translationService.createTranslationRequest(source: "fr", target: "en", text: text)
+        translationService.fromLangage = "fr"
+        translationService.toLangage = "en"
+        let request = translationService.createTranslationRequest(text: text)
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -93,7 +101,9 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseOK, error: nil))
-        let request = translationService.createTranslationRequest(source: "fr", target: "en", text: text)
+        translationService.fromLangage = "fr"
+        translationService.toLangage = "en"
+        let request = translationService.createTranslationRequest(text: text)
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -128,4 +138,31 @@ class TranslationTestCase: XCTestCase {
         XCTAssertEqual(translationService.languageCode(languageName: "Truc"), "")
         
     }
+    
+    func testLanguageCode_NameIsFrench_ShouldReturnfr() {
+        let translationService = TranslationService()
+        translationService.languages = [Language(language: "fr", name: "French")]
+        
+        XCTAssertEqual(translationService.languageCode(languageName: "French"), "fr")
+    }
+    
+    func testLanguageCode_NameIsIncorrect_ShouldReturnEmpty() {
+        let translationService = TranslationService()
+        translationService.languages = [Language(language: "fr", name: "French")]
+        
+        XCTAssertEqual(translationService.languageCode(languageName: "ABC"), "")
+    }
+    
+    func testReverseLanguages_TranslationIsFromFRToEN_ShouldSetTranslationFromENToFR() {
+        let translationService = TranslationService()
+        
+        translationService.fromLangage = "fr"
+        translationService.toLangage = "en"
+        
+        translationService.reverseLangages()
+        
+        XCTAssertEqual(translationService.fromLangage, "en")
+        XCTAssertEqual(translationService.toLangage, "fr")
+    }
+    
 }

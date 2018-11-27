@@ -48,20 +48,10 @@ class TranslationService : APIService {
         return request
     }
     
-    func langageName(code: String) -> String? {
-        for language in languages {
-            if language.name == code {
-                return language.name
-            }
-        }
-        
-        return nil
-    }
-    
     func languageCode(languageName: String) -> String {
-        for itemLanguage in languages {
-            if itemLanguage.name == languageName {
-                return itemLanguage.language
+        for language in languages {
+            if language.name == languageName {
+                return language.language
             }
         }
         

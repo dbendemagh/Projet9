@@ -17,10 +17,14 @@ class WeatherVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        weatherTableView.tableFooterView = UIView()
         getWeather()
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getWeather()
+    }
+    
     func getWeather() {
         guard let request = weatherService.createWeatherRequest() else { return }
         

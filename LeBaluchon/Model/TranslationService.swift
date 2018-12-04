@@ -21,6 +21,7 @@ class TranslationService : APIService {
         self.urlSession = urlSession
     }
     
+    // Create request to retrieve languages list
     func createLanguagesRequest() -> URLRequest {
         let urlString: String = URLTranslation.baseURL + URLTranslation.languages + "?key=\(URLTranslation.apiKey)&target=en"
         let url = URL(string: urlString)!
@@ -31,6 +32,7 @@ class TranslationService : APIService {
         return request
     }
     
+    // Create translation request with selected languages
     func createTranslationRequest(text: String) -> URLRequest {
         let urlString: String = URLTranslation.baseURL
         let url = URL(string: urlString)!
@@ -48,6 +50,7 @@ class TranslationService : APIService {
         return request
     }
     
+    // Get language code ... name
     func languageCode(languageName: String) -> String {
         for language in languages {
             if language.name == languageName {
@@ -58,6 +61,7 @@ class TranslationService : APIService {
         return ""
     }
     
+    // swap languages
     func reverseLangages() {
         let langage = fromLangage
         

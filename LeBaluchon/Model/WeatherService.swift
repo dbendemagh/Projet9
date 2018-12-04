@@ -12,14 +12,15 @@ class WeatherService: APIService {
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
-    var locations: [Location] = [Location(city: "Chantilly", country: "fr"),
-                                 Location(city: "New-York", country: "us")]
+    var locations: [Location] = [Location(city: "New-York", country: "us"),
+                                 Location(city: "La Chapelle-en-serval", country: "fr")]
     var weathers: [Channel] = []
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
     }
     
+    // Create weather request
     func createWeatherRequest() -> URLRequest? {
         
         let weatherSelect = createWeatherSelect()
@@ -37,6 +38,7 @@ class WeatherService: APIService {
         return request
     }
     
+    // What ??
     func createWeatherSelect() -> String {
         var locationsParameter: String = ""
         

@@ -23,14 +23,14 @@ class TranslationVC: UIViewController {
     
     var test: String = ""
     
-    lazy var fromLangagePickerView: UIPickerView = {
+    lazy var fromLanguagePickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
         return pickerView
     }()
     
-    lazy var toLangagePickerView: UIPickerView = {
+    lazy var toLanguagePickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -51,11 +51,8 @@ class TranslationVC: UIViewController {
     
     // Picker View for currency choice
     func setupCurrenciesPicker() {
-//        fromLangagePicker.delegate = self
-//        toLangagePicker.delegate = self
-        
-        fromLanguageTextView.inputView = fromLangagePickerView
-        toLanguageTextView.inputView = toLangagePickerView
+        fromLanguageTextView.inputView = fromLanguagePickerView
+        toLanguageTextView.inputView = toLanguagePickerView
         fromLanguageTextView.isEnabled = true
         toLanguageTextView.isEnabled = true
     }
@@ -119,6 +116,8 @@ class TranslationVC: UIViewController {
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         fromTextView.resignFirstResponder()
+        // Picker selection canceled, reset language
+        fromLanguageTextView.text = translationService.fromLangage
     }
     
     private func toggleActivityIndicator(shown: Bool) {
@@ -155,11 +154,10 @@ extension TranslationVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let currency = translationService.languages[row].name
-        //originalCurrency = currency
         
-        if pickerView == fromLangagePickerView {
+        if pickerView == fromLanguagePickerView {
             fromLanguageTextView.text = currency
-        } else if pickerView == toLangagePickerView {
+        } else if pickerView == toLanguagePickerView {
             toLanguageTextView.text = currency
         }
     }

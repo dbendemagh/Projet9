@@ -13,12 +13,12 @@ struct URLFixer {
     static let baseURL = "http://data.fixer.io/api/"
     static let currencies = "symbols"
     static let rates = "latest"
-    static let apiKey = "cf699e9d9bdb0aee906bbde37b77ea52"
+    static let apiKey = ""
 }
 
 struct URLTranslation {
     static let baseURL = "https://translation.googleapis.com/language/translate/v2/"
-    static let apiKey = "AIzaSyA04wv256ASngsHO8hfd-FA31bsOyEOah8"
+    static let apiKey = ""
     static let languages = "languages"
     
 }

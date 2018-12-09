@@ -19,6 +19,7 @@
 		6550D4142152442600B32CC0 /* TranslationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6550D4132152442600B32CC0 /* TranslationVC.swift */; };
 		6550D4162152448100B32CC0 /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6550D4152152448100B32CC0 /* WeatherVC.swift */; };
 		656ED0B021A038530048D5D2 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656ED0AF21A038530048D5D2 /* CurrencyTextField.swift */; };
+		656ED0B221BC2E810048D5D2 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656ED0B121BC2E810048D5D2 /* ApiKeys.plist */; };
 		658BE410216A6A90008D3B6B /* CurrencyServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BE40F216A6A90008D3B6B /* CurrencyServiceTestCase.swift */; };
 		658BE414216A70BB008D3B6B /* CurrencySymbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 658BE413216A70BB008D3B6B /* CurrencySymbols.json */; };
 		658BE416216A71EC008D3B6B /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BE415216A71EC008D3B6B /* FakeResponseData.swift */; };
@@ -60,6 +61,7 @@
 		6550D4132152442600B32CC0 /* TranslationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationVC.swift; sourceTree = "<group>"; };
 		6550D4152152448100B32CC0 /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 		656ED0AF21A038530048D5D2 /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
+		656ED0B121BC2E810048D5D2 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		658BE40F216A6A90008D3B6B /* CurrencyServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceTestCase.swift; sourceTree = "<group>"; };
 		658BE413216A70BB008D3B6B /* CurrencySymbols.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrencySymbols.json; sourceTree = "<group>"; };
 		658BE415216A71EC008D3B6B /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				65E9099C21482B78001E5498 /* Assets.xcassets */,
 				65E909A121482B78001E5498 /* Info.plist */,
 				658BE41D216BF4F9008D3B6B /* Constants.swift */,
+				656ED0B121BC2E810048D5D2 /* ApiKeys.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65E909A021482B78001E5498 /* LaunchScreen.storyboard in Resources */,
+				656ED0B221BC2E810048D5D2 /* ApiKeys.plist in Resources */,
 				65E9099D21482B78001E5498 /* Assets.xcassets in Resources */,
 				65E9099B21482B77001E5498 /* Main.storyboard in Resources */,
 			);

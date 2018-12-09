@@ -16,6 +16,22 @@ protocol APIService {
 }
 
 extension APIService {
+    
+    func getApiKey(key: String) -> String {
+        var apiKey = ""
+        
+        guard let path = Bundle.main.path(forResource: "ApiKeys", ofType: "plist") else {
+            fatalError("ApiKeys.plist not found")
+        }
+        
+        let url = URL(fileURLWithPath: path)
+        if let obj = NSDictionary(contentsOf: url), let value = obj.value(forKey: key) {
+            apiKey = value as? String ?? ""
+        }
+        
+        return apiKey
+    }
+    
     mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> ()) {
         
         task = urlSession.dataTask(with: request) { (data, response, error) in

@@ -16,13 +16,12 @@ class TranslationVC: UIViewController {
     @IBOutlet weak var toTextView: UITextView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var reverseButton: UIButton!
+    @IBOutlet weak var swapLanguagesButton: UIButton!
     
     var translationService = TranslationService()
     var picker = UIPickerView()
     
-    var test: String = ""
-    
+    // Pickers for language selection
     lazy var fromLanguagePickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.dataSource = self
@@ -45,7 +44,7 @@ class TranslationVC: UIViewController {
         fromTextView.text = "Hello"
         toTextView.text = ""
         
-        reverseButton.imageView?.contentMode = .scaleAspectFit
+        swapLanguagesButton.imageView?.contentMode = .scaleAspectFit
         
     }
     
@@ -57,7 +56,7 @@ class TranslationVC: UIViewController {
         toLanguageTextView.isEnabled = true
     }
     
-    // Add Done button to picker View
+    // Add Done button to Picker View
     func createToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -125,8 +124,8 @@ class TranslationVC: UIViewController {
         activityIndicator.isHidden = !shown
     }
     
-    @IBAction func reverseButtonTapped(_ sender: UIButton) {
-        translationService.reverseLangages()
+    @IBAction func swapLanguagesButtonTapped(_ sender: UIButton) {
+        translationService.swapLangages()
         
         let toLangage = fromLanguageTextView.text
         fromLanguageTextView.text = toLanguageTextView.text

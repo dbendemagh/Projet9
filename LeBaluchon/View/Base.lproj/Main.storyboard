@@ -129,7 +129,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Mnf-c3-ZCH"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
@@ -309,7 +309,7 @@
                                                         <rect key="frame" x="267" y="0.0" width="76" height="30"/>
                                                         <state key="normal" image="iconfinder_swap-vert_326707"/>
                                                         <connections>
-                                                            <action selector="reverseButtonTapped:" destination="E1Q-St-ezX" eventType="touchUpInside" id="fUM-vD-mQg"/>
+                                                            <action selector="swapLanguagesButtonTapped:" destination="E1Q-St-ezX" eventType="touchUpInside" id="fUM-vD-mQg"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -386,7 +386,7 @@
                         <outlet property="activityIndicator" destination="m9c-2t-qts" id="ogG-Fh-b4Z"/>
                         <outlet property="fromLanguageTextView" destination="p4v-Ne-hxk" id="Iok-Je-bco"/>
                         <outlet property="fromTextView" destination="gL7-kK-5Ir" id="KnY-pi-Edj"/>
-                        <outlet property="reverseButton" destination="yNE-6R-fmO" id="9cp-Km-SRV"/>
+                        <outlet property="swapLanguagesButton" destination="yNE-6R-fmO" id="9cp-Km-SRV"/>
                         <outlet property="toLanguageTextView" destination="cK3-Em-lDu" id="GlU-4b-apj"/>
                         <outlet property="toTextView" destination="pbp-i7-3vX" id="o8g-qL-A8A"/>
                         <outlet property="translateButton" destination="gm9-rO-R7X" id="M6K-Tb-7hD"/>

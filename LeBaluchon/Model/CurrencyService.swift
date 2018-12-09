@@ -12,6 +12,7 @@ class CurrencyService: APIService {
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
+    var apiKey = ""
     var currencies: [Currency] = []
     var exchangeRates: [String: Double] = [:]
     
@@ -32,10 +33,12 @@ class CurrencyService: APIService {
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
+        
+        apiKey = getApiKey(key: "FixerKey")
     }
     
     func createFixerRequest(endPoint: String, currencyConversion: Bool = false) -> URLRequest {
-        var urlString: String = URLFixer.baseURL + endPoint + "&access_key=" + URLFixer.apiKey
+        var urlString: String = URLFixer.baseURL + endPoint + "&access_key=" + apiKey   // URLFixer.apiKey
         
         if currencyConversion {
             urlString = urlString + "&symbols=\(fromCurrency),\(toCurrency)"

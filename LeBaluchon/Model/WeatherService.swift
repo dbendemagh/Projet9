@@ -20,7 +20,7 @@ class WeatherService: APIService {
         self.urlSession = urlSession
     }
     
-    // Create weather request
+    // Create API weather request
     func createWeatherRequest() -> URLRequest? {
         
         let weatherSelect = createWeatherSelect()
@@ -38,7 +38,7 @@ class WeatherService: APIService {
         return request
     }
     
-    // What ??
+    // Create Yahoo weather select
     func createWeatherSelect() -> String {
         var locationsParameter: String = ""
         

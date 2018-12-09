@@ -12,6 +12,7 @@ class TranslationService : APIService {
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
+    var apiKey = ""
     var languages: [Language] = []
     
     var fromLangage: String = "en"
@@ -19,6 +20,8 @@ class TranslationService : APIService {
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
+        
+        apiKey = getApiKey(key: "GoogleTranslateKey")
     }
     
     // Create request to retrieve languages list
@@ -50,7 +53,7 @@ class TranslationService : APIService {
         return request
     }
     
-    // Get language code ... name
+    // Fetch language code according to language name
     func languageCode(languageName: String) -> String {
         for language in languages {
             if language.name == languageName {
@@ -61,8 +64,7 @@ class TranslationService : APIService {
         return ""
     }
     
-    // swap languages
-    func reverseLangages() {
+    func swapLangages() {
         let langage = fromLangage
         
         fromLangage = toLangage

@@ -52,6 +52,7 @@ class CurrencyService: APIService {
         return request
     }
     
+    //
     func currencyName(code: String) -> String? {
         for currency in currencies {
             if currency.code == code {

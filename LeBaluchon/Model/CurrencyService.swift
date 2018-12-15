@@ -9,6 +9,9 @@
 import Foundation
 
 class CurrencyService: APIService {
+    
+    // MARK: - Properties
+    
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
@@ -31,12 +34,15 @@ class CurrencyService: APIService {
         }
     }
     
+    // MARK: Methods
+    
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
         
         apiKey = getApiKey(key: "FixerKey")
     }
     
+    // Create
     func createFixerRequest(endPoint: String, currencyConversion: Bool = false) -> URLRequest {
         var urlString: String = URLFixer.baseURL + endPoint + "&access_key=" + apiKey   // URLFixer.apiKey
         
@@ -52,7 +58,7 @@ class CurrencyService: APIService {
         return request
     }
     
-    //
+    // Fetch currency name according to currency code
     func currencyName(code: String) -> String? {
         for currency in currencies {
             if currency.code == code {
@@ -63,7 +69,7 @@ class CurrencyService: APIService {
         return nil
     }
     
-    func reverseCurrencies() {
+    func swapCurrencies() {
         let currency = fromCurrency
         let exchangeRate = fromExchangeRate
         

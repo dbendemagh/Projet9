@@ -9,12 +9,17 @@
 import Foundation
 
 class WeatherService: APIService {
+    
+    // MARK: - Properties
+    
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
     var locations: [Location] = [Location(city: "New-York", country: "us"),
                                  Location(city: "La Chapelle-en-serval", country: "fr")]
     var weathers: [Channel] = []
+    
+    // MARK: - Methods
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession

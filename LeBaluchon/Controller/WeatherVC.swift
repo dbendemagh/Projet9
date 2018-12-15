@@ -10,10 +10,16 @@ import UIKit
 
 class WeatherVC: UIViewController {
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var weatherTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: - Properties
+    
     var weatherService = WeatherService()
+    
+    // MARK: - Init methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +30,8 @@ class WeatherVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         getWeather()
     }
+    
+    // MARK: - Methods
     
     func getWeather() {
         guard let request = weatherService.createWeatherRequest() else { return }

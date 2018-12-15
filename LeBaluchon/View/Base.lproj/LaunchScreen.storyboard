@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +16,34 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Backpack" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-xd-4eu">
+                                <rect key="frame" x="20" y="-306.5" width="335" height="1280"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ziG-xd-4eu" secondAttribute="height" multiplier="67:256" id="dtU-kN-U4Y"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le baluchon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZl-ai-YAx">
+                                <rect key="frame" x="0.0" y="70" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="uQR-Sf-KlO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ziG-xd-4eu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="6x9-Ne-cRS"/>
+                            <constraint firstItem="ziG-xd-4eu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HZr-xg-AFc"/>
+                            <constraint firstItem="ziG-xd-4eu" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="QMy-Ac-nBb"/>
+                            <constraint firstItem="NZl-ai-YAx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T6d-gf-Roj"/>
+                            <constraint firstAttribute="trailing" secondItem="ziG-xd-4eu" secondAttribute="trailing" constant="20" id="WrR-zS-EBx"/>
+                            <constraint firstItem="NZl-ai-YAx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="aSQ-EM-mjw"/>
+                            <constraint firstItem="NZl-ai-YAx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eHG-2J-rHK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NZl-ai-YAx" secondAttribute="trailing" id="zTF-DB-dPW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +52,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Backpack" width="1071" height="1280"/>
+    </resources>
 </document>

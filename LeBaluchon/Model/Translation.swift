@@ -29,6 +29,11 @@ struct Languages: Decodable {
 }
 
 struct Language: Decodable {
-    let language: String
-    let name: String
+    var code: String
+    var name: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case code = "language"
+        case name
+    }
 }

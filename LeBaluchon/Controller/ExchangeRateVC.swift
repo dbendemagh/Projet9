@@ -10,6 +10,7 @@ import UIKit
 
 class ExchangeRateVC: UIViewController {
     
+    // MARK: - Outlets
     
     @IBOutlet weak var fromCurrencyCodeLabel: UILabel!
     @IBOutlet weak var toCurrencyCodeLabel: UILabel!
@@ -24,7 +25,8 @@ class ExchangeRateVC: UIViewController {
     @IBOutlet weak var fromCurrencyNameLabel: UILabel!
     @IBOutlet weak var toCurrencyNameLabel: UILabel!
     
-    //private let apiService = APIService()
+    // MARK: - Properties
+    
     public var currencyService = CurrencyService()
     
     lazy var pickerView: UIPickerView = {
@@ -34,11 +36,10 @@ class ExchangeRateVC: UIViewController {
         return pickerView
     }()
     
-    //var originalCurrency: String = ""
-    //var conversionCurrency: String = ""
-    
     let fromCurrencyPicker = UIPickerView()
     let toCurrencyPicker = UIPickerView()
+    
+    // MARK: - Init Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,9 +76,7 @@ class ExchangeRateVC: UIViewController {
         toCurrencyCodeTextField.inputAccessoryView = toolbar
     }
     
-    @IBAction func convertButtonTapped(_ sender: UIButton) {
-        convert()
-    }
+    // MARK: - Methods
     
     // Retrieve currency list
     func getCurrencySymbols() {
@@ -167,6 +166,7 @@ class ExchangeRateVC: UIViewController {
     
     @objc func endEditing() {
         view.endEditing(true)
+        // Déballer !!!!
         currencyService.fromCurrency = fromCurrencyCodeTextField.text!
         currencyService.toCurrency = toCurrencyCodeTextField.text!
         toValueTextField.text = ""
@@ -175,24 +175,14 @@ class ExchangeRateVC: UIViewController {
         updateDisplay()
     }
     
-    // Hide Keyboard
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        fromValueTextField.resignFirstResponder()
-        toValueTextField.resignFirstResponder()
-    }
-    
+    // display Activity indicator
     private func toggleActivityIndicator(shown: Bool) {
         convertButton.isHidden = shown
         activityIndicator.isHidden = !shown
     }
     
-    // Invert currencies
-    @IBAction func currenciesButtonTapped(_ sender: UIButton) {
-        reverseCurrencies()
-    }
-    
-    func reverseCurrencies() {
-        currencyService.reverseCurrencies()
+    func swapCurrencies() {
+        currencyService.swapCurrencies()
         
         let toValue = fromValueTextField.text
         
@@ -203,6 +193,23 @@ class ExchangeRateVC: UIViewController {
         toCurrencyCodeTextField.text = currencyService.toCurrency
         
         updateDisplay()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func convertButtonTapped(_ sender: UIButton) {
+        convert()
+    }
+    
+    // Hide Picker View
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        fromValueTextField.resignFirstResponder()
+        toValueTextField.resignFirstResponder()
+    }
+    
+    // Invert currencies
+    @IBAction func currenciesButtonTapped(_ sender: UIButton) {
+        swapCurrencies()
     }
 }
 

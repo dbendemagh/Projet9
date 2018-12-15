@@ -15,8 +15,10 @@ class TranslationService : APIService {
     var apiKey = ""
     var languages: [Language] = []
     
-    var fromLangage: String = "en"
-    var toLangage: String = "fr"
+    //var fromLangage: String = "en"
+    var fromLanguage: Language = Language(code: "en",name: "English")
+    //var toLangage: String = "fr"
+    var toLanguage: Language = Language(code: "fr",name: "French")
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
@@ -26,7 +28,7 @@ class TranslationService : APIService {
     
     // Create request to retrieve languages list
     func createLanguagesRequest() -> URLRequest {
-        let urlString: String = URLTranslation.baseURL + URLTranslation.languages + "?key=\(URLTranslation.apiKey)&target=en"
+        let urlString: String = URLTranslation.baseURL + URLTranslation.languages + "?key=\(apiKey)&target=en"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
@@ -43,7 +45,7 @@ class TranslationService : APIService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        let body = "key=\(URLTranslation.apiKey)&source=\(fromLangage)&target=\(toLangage)&format=text&q=\(text)"
+        let body = "key=\(URLTranslation.apiKey)&source=\(fromLanguage.name)&target=\(toLanguage.name)&format=text&q=\(text)"
         
         request.httpBody = body.data(using: .utf8)
         
@@ -57,17 +59,17 @@ class TranslationService : APIService {
     func languageCode(languageName: String) -> String {
         for language in languages {
             if language.name == languageName {
-                return language.language
+                return language.code
             }
         }
         
         return ""
     }
     
-    func swapLangages() {
-        let langage = fromLangage
+    func swapLanguages() {
+        let language = fromLanguage
         
-        fromLangage = toLangage
-        toLangage = langage
+        fromLanguage = toLanguage
+        toLanguage = language
     }
 }

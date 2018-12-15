@@ -17,6 +17,7 @@ protocol APIService {
 
 extension APIService {
     
+    // Get API Key from Apikeys.plist
     func getApiKey(key: String) -> String {
         var apiKey = ""
         
@@ -32,6 +33,7 @@ extension APIService {
         return apiKey
     }
     
+    // Generic function
     mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> ()) {
         
         task = urlSession.dataTask(with: request) { (data, response, error) in

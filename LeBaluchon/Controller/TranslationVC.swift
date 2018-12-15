@@ -9,7 +9,9 @@
 import UIKit
 
 class TranslationVC: UIViewController {
-
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var fromLanguageTextView: UITextField!
     @IBOutlet weak var fromTextView: UITextView!
     @IBOutlet weak var toLanguageTextView: UITextField!
@@ -17,6 +19,8 @@ class TranslationVC: UIViewController {
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var swapLanguagesButton: UIButton!
+    
+    // MARK: - Properties
     
     var translationService = TranslationService()
     var picker = UIPickerView()
@@ -35,6 +39,8 @@ class TranslationVC: UIViewController {
         pickerView.delegate = self
         return pickerView
     }()
+    
+    // MARK: - Init methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +76,8 @@ class TranslationVC: UIViewController {
         toLanguageTextView.inputAccessoryView = toolbar
     }
     
+    // MARK: - Methods
+    
     func getLanguages() {
         let request = translationService.createLanguagesRequest()
         
@@ -84,16 +92,6 @@ class TranslationVC: UIViewController {
                 self.displayAlert(title: "Network error", message: "Cannot retrieve languages list")
             }
         }
-    }
-    
-    @objc func endEditing() {
-        view.endEditing(true)
-        translationService.fromLangage = translationService.languageCode(languageName: fromLanguageTextView.text!)
-        translationService.toLangage = translationService.languageCode(languageName: toLanguageTextView.text!)
-    }
-    
-    @IBAction func TranslateButtonTapped(_ sender: UIButton) {
-        translate()
     }
     
     func translate() {
@@ -113,10 +111,29 @@ class TranslationVC: UIViewController {
         }
     }
     
+    // Done button tapped, save languages selection
+    @objc func endEditing() {
+        view.endEditing(true)
+        translationService.fromLanguage.code = translationService.languageCode(languageName: fromLanguageTextView.text!)
+        translationService.fromLanguage.name = fromLanguageTextView.text!
+        
+        translationService.toLanguage.code = translationService.languageCode(languageName: toLanguageTextView.text!)
+        translationService.toLanguage.name = toLanguageTextView.text!
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func TranslateButtonTapped(_ sender: UIButton) {
+        translate()
+    }
+    
+    // Abort Picker View selection
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         fromTextView.resignFirstResponder()
-        // Picker selection canceled, reset language
-        fromLanguageTextView.text = translationService.fromLangage
+        toTextView.resignFirstResponder()
+        // Reset display
+        fromLanguageTextView.text = translationService.fromLanguage.name
+        toLanguageTextView.text = translationService.toLanguage.name
     }
     
     private func toggleActivityIndicator(shown: Bool) {
@@ -125,11 +142,11 @@ class TranslationVC: UIViewController {
     }
     
     @IBAction func swapLanguagesButtonTapped(_ sender: UIButton) {
-        translationService.swapLangages()
+        translationService.swapLanguages()
         
-        let toLangage = fromLanguageTextView.text
+        let toLanguage = fromLanguageTextView.text
         fromLanguageTextView.text = toLanguageTextView.text
-        toLanguageTextView.text = toLangage
+        toLanguageTextView.text = toLanguage
         
         let toText = fromTextView.text
         fromTextView.text = toTextView.text

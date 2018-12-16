@@ -28,7 +28,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uQR-Sf-KlO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -41,7 +41,6 @@
                             <constraint firstItem="NZl-ai-YAx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T6d-gf-Roj"/>
                             <constraint firstAttribute="trailing" secondItem="ziG-xd-4eu" secondAttribute="trailing" constant="20" id="WrR-zS-EBx"/>
                             <constraint firstItem="NZl-ai-YAx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="aSQ-EM-mjw"/>
-                            <constraint firstItem="NZl-ai-YAx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eHG-2J-rHK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NZl-ai-YAx" secondAttribute="trailing" id="zTF-DB-dPW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -53,6 +52,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Backpack" width="1071" height="1280"/>
+        <image name="Backpack" width="1070" height="1280"/>
     </resources>
 </document>

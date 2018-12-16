@@ -15,7 +15,7 @@ class WeatherService: APIService {
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
-    var locations: [Location] = [Location(city: "New-York", country: "us"),
+    let locations: [Location] = [Location(city: "New-York", country: "us"),
                                  Location(city: "La Chapelle-en-serval", country: "fr")]
     var weathers: [Channel] = []
     
@@ -44,7 +44,7 @@ class WeatherService: APIService {
     }
     
     // Create Yahoo weather select
-    func createWeatherSelect() -> String {
+    private func createWeatherSelect() -> String {
         var locationsParameter: String = ""
         
         for location in locations {

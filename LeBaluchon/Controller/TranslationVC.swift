@@ -78,7 +78,7 @@ class TranslationVC: UIViewController {
     
     // MARK: - Methods
     
-    func getLanguages() {
+    private func getLanguages() {
         let request = translationService.createLanguagesRequest()
         
         toggleActivityIndicator(shown: true)
@@ -94,7 +94,7 @@ class TranslationVC: UIViewController {
         }
     }
     
-    func translate() {
+    private func translate() {
         guard let text = fromTextView.text, fromTextView.text != "" else {
             self.displayAlert(title: "No text", message: "Enter a text to translate")
             return

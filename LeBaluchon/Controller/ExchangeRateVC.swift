@@ -54,7 +54,7 @@ class ExchangeRateVC: UIViewController {
     }
     
     // Picker View for currency choice
-    func createCurrenciesPicker() {
+    private func createCurrenciesPicker() {
         fromCurrencyPicker.delegate = self
         toCurrencyPicker.delegate = self
         
@@ -63,7 +63,7 @@ class ExchangeRateVC: UIViewController {
     }
     
     // Add Done button to picker View
-    func createToolbar() {
+    private func createToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
@@ -79,7 +79,7 @@ class ExchangeRateVC: UIViewController {
     // MARK: - Methods
     
     // Retrieve currency list
-    func getCurrencySymbols() {
+    private func getCurrencySymbols() {
         let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
         
         toggleActivityIndicator(shown: true)
@@ -97,7 +97,7 @@ class ExchangeRateVC: UIViewController {
     }
     
     // Retrieve last Exchange rate
-    func getLastExchangeRate() {
+    private func getLastExchangeRate() {
         currencyService.fromExchangeRate = 0
         currencyService.toExchangeRate = 0
         
@@ -120,7 +120,7 @@ class ExchangeRateVC: UIViewController {
         }
     }
     
-    func convert() {
+    private func convert() {
         guard let fromValueText = fromValueTextField.text, fromValueTextField.text != "" else {
             self.displayAlert(title: "No entry", message: "Enter a value to convert")
             return
@@ -152,7 +152,7 @@ class ExchangeRateVC: UIViewController {
         }
     }
     
-    func updateDisplay() {
+    private func updateDisplay() {
         fromCurrencyCodeLabel.text = currencyService.fromCurrency
         toCurrencyCodeLabel.text = currencyService.toCurrency
         
@@ -181,7 +181,7 @@ class ExchangeRateVC: UIViewController {
         activityIndicator.isHidden = !shown
     }
     
-    func swapCurrencies() {
+    private func swapCurrencies() {
         currencyService.swapCurrencies()
         
         let toValue = fromValueTextField.text

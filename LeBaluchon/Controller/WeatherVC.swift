@@ -33,7 +33,7 @@ class WeatherVC: UIViewController {
     
     // MARK: - Methods
     
-    func getWeather() {
+    private func getWeather() {
         guard let request = weatherService.createWeatherRequest() else { return }
         
         toggleActivityIndicator(shown: true)

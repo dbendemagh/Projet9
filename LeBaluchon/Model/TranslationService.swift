@@ -15,9 +15,7 @@ class TranslationService : APIService {
     var apiKey = ""
     var languages: [Language] = []
     
-    //var fromLangage: String = "en"
     var fromLanguage: Language = Language(code: "en",name: "English")
-    //var toLangage: String = "fr"
     var toLanguage: Language = Language(code: "fr",name: "French")
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
@@ -45,12 +43,12 @@ class TranslationService : APIService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        let body = "key=\(URLTranslation.apiKey)&source=\(fromLanguage.name)&target=\(toLanguage.name)&format=text&q=\(text)"
+        let body = "key=\(apiKey)&source=\(fromLanguage.code)&target=\(toLanguage.code)&format=text&q=\(text)"
         
         request.httpBody = body.data(using: .utf8)
         
-        print(request.url)
-        print(request.httpBody)
+        //print(request.url)
+        //print(request.httpBody)
         
         return request
     }

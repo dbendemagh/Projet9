@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: - Google Translation Json
+
 struct Translation: Decodable {
     let data: Translations
 }
@@ -28,6 +30,9 @@ struct Languages: Decodable {
     let languages: [Language]
 }
 
+// Decodable struct Language also used for Languages Array
+// language property is renamed : code
+// Example : code = "fr", name = "French"
 struct Language: Decodable {
     var code: String
     var name: String

@@ -101,7 +101,7 @@
                             </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="EUR" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u02-T7-wlv">
                                 <rect key="frame" x="269" y="181" width="90" height="40"/>
-                                <color key="backgroundColor" red="0.84313725490196079" green="0.36862745098039218" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ge8-Bb-yBr"/>
                                     <constraint firstAttribute="width" constant="90" id="twt-Z0-U8k"/>
@@ -112,7 +112,7 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="USD" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F5j-9W-8ZI">
                                 <rect key="frame" x="269" y="258" width="90" height="40"/>
-                                <color key="backgroundColor" red="0.84352666139999999" green="0.3678818941" blue="0.087029851970000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="TEE-td-uqd"/>
                                     <constraint firstAttribute="width" constant="90" id="aZo-ne-A9L"/>
@@ -282,7 +282,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="TranslateButtonTapped:" destination="E1Q-St-ezX" eventType="touchUpInside" id="Qx5-Le-Omf"/>
+                                    <action selector="translateButtonTapped:" destination="E1Q-St-ezX" eventType="touchUpInside" id="Qx5-Le-Omf"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yqm-u4-4QH">
@@ -296,7 +296,7 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="English" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p4v-Ne-hxk">
                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
-                                                        <color key="backgroundColor" red="0.84352666139999999" green="0.3678818941" blue="0.087029851970000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="2tQ-19-URF"/>
                                                             <constraint firstAttribute="width" constant="250" id="T7j-Fg-Res"/>
@@ -337,7 +337,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="French" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cK3-Em-lDu">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
-                                                <color key="backgroundColor" red="0.84352666139999999" green="0.3678818941" blue="0.087029851970000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="c4Q-DM-Me5"/>
                                                     <constraint firstAttribute="height" constant="30" id="rHX-18-Fze"/>

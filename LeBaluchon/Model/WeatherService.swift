@@ -48,7 +48,7 @@ class WeatherService: APIService {
         var locationsParameter: String = ""
         
         for location in locations {
-            locationsParameter = locationsParameter + "'\(location.city), \(location.country)',"
+            locationsParameter += "'\(location.city), \(location.country)',"
         }
         locationsParameter.removeLast()
         

@@ -16,6 +16,7 @@ class CurrencyService: APIService {
     var task: URLSessionDataTask?
     
     var apiKey = ""
+    
     var currencies: [Currency] = []
     var exchangeRates: [String: Double] = [:]
     
@@ -47,7 +48,7 @@ class CurrencyService: APIService {
         var urlString: String = URLFixer.baseURL + endPoint + "&access_key=" + apiKey   // URLFixer.apiKey
         
         if currencyConversion {
-            urlString = urlString + "&symbols=\(fromCurrency),\(toCurrency)"
+            urlString += "&symbols=\(fromCurrency),\(toCurrency)"
         }
         
         let url = URL(string: urlString)!
@@ -60,10 +61,8 @@ class CurrencyService: APIService {
     
     // Fetch currency name according to currency code
     func currencyName(code: String) -> String? {
-        for currency in currencies {
-            if currency.code == code {
-                return currency.name
-            }
+        for currency in currencies where currency.code == code {
+            return currency.name
         }
         
         return nil
@@ -80,4 +79,3 @@ class CurrencyService: APIService {
         toExchangeRate = exchangeRate
     }
 }
-

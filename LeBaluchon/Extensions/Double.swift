@@ -12,21 +12,4 @@ extension Double {
     func fraction(_ value: Int) -> String {
         return String(format: "%.\(value)f", self)
     }
-    
-    func fraction0() -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.roundingMode = NumberFormatter.RoundingMode.halfUp
-        formatter.usesGroupingSeparator = false
-        formatter.maximumFractionDigits = 2
-        
-        let value: Double = self
-        let nsnumberValue: NSNumber = NSNumber(value: value)
-        
-        if let roundedValue = formatter.string(from: nsnumberValue) {
-            return roundedValue
-        }
-        
-        return ""
-    }
 }

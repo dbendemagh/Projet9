@@ -8,15 +8,15 @@
 
 import Foundation
 
-class TranslationService : APIService {
+class TranslationService: APIService {
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
     var apiKey = ""
     var languages: [Language] = []
     
-    var fromLanguage: Language = Language(code: "en",name: "English")
-    var toLanguage: Language = Language(code: "fr",name: "French")
+    var fromLanguage: Language = Language(code: "en", name: "English")
+    var toLanguage: Language = Language(code: "fr", name: "French")
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
@@ -55,10 +55,8 @@ class TranslationService : APIService {
     
     // Fetch language code according to language name
     func languageCode(languageName: String) -> String {
-        for language in languages {
-            if language.name == languageName {
-                return language.code
-            }
+        for language in languages where language.name == languageName {
+            return language.code
         }
         
         return ""

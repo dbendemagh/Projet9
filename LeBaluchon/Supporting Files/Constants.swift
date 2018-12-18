@@ -36,4 +36,3 @@ struct Alert {
     static let title = "Network error"
     static let message = "Cannot get"
 }
-

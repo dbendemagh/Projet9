@@ -12,7 +12,7 @@ protocol APIService {
     var urlSession: URLSession { get set }
     var task: URLSessionDataTask? { get set }
     
-    mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> ())
+    mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> Void)
 }
 
 extension APIService {
@@ -34,7 +34,7 @@ extension APIService {
     }
     
     // Generic function
-    mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> ()) {
+    mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> Void) {
         
         task = urlSession.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
@@ -70,11 +70,8 @@ extension APIService {
                 }
                 
                 callBack(true, responseJSON)
-                
-
             }
         }
         task?.resume()
     }
 }
-

@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Json
+// MARK: - Fixer.io Json
 struct CurrencyName: Decodable {
     let symbols: [String: String]
 }
@@ -18,7 +18,7 @@ struct ExchangeRate: Decodable {
     let rates: [String: Double]
 }
 
-// 
+// MARK: - Struct for Currencies Array
 struct Currency {
     let code: String
     let name: String

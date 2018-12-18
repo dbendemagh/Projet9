@@ -189,7 +189,7 @@ class CurrencyServiceTestCase: XCTestCase {
         currencyService.fromExchangeRate = 1
         currencyService.toExchangeRate = 1.15783
         
-        currencyService.reverseCurrencies()
+        currencyService.swapCurrencies()
         
         XCTAssertEqual(currencyService.fromCurrency, "USD")
         XCTAssertEqual(currencyService.toCurrency, "EUR")
@@ -208,5 +208,4 @@ class CurrencyServiceTestCase: XCTestCase {
         let currencyService = CurrencyService()
         XCTAssertEqual(currencyService.currencyName(code: "ABC"), nil)
     }
-    
 }

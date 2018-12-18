@@ -29,15 +29,20 @@ class ExchangeRateVC: UIViewController {
     
     public var currencyService = CurrencyService()
     
-    lazy var pickerView: UIPickerView = {
+    // Pickers for currency selection
+    lazy var fromCurrencyPicker: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
         return pickerView
     }()
     
-    let fromCurrencyPicker = UIPickerView()
-    let toCurrencyPicker = UIPickerView()
+    lazy var toCurrencyPicker: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        return pickerView
+    }()
     
     // MARK: - Init Methods
     
@@ -49,15 +54,12 @@ class ExchangeRateVC: UIViewController {
         currencyService.fromCurrency = "EUR"
         currencyService.toCurrency = "USD"
         
-        createCurrenciesPicker()
+        setupCurrenciesPicker()
         createToolbar()
     }
     
     // Picker View for currency choice
-    private func createCurrenciesPicker() {
-        fromCurrencyPicker.delegate = self
-        toCurrencyPicker.delegate = self
-        
+    private func setupCurrenciesPicker() {
         fromCurrencyCodeTextField.inputView = fromCurrencyPicker
         toCurrencyCodeTextField.inputView = toCurrencyPicker
     }
@@ -78,7 +80,7 @@ class ExchangeRateVC: UIViewController {
     
     // MARK: - Methods
     
-    // Retrieve currency list
+    // Retrieve currency list for Picker View selection
     private func getCurrencySymbols() {
         let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
         
@@ -205,6 +207,9 @@ class ExchangeRateVC: UIViewController {
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         fromValueTextField.resignFirstResponder()
         toValueTextField.resignFirstResponder()
+        // Reset display
+        fromCurrencyCodeTextField.text = currencyService.fromCurrency
+        toCurrencyCodeTextField.text = currencyService.toCurrency
     }
     
     // Invert currencies

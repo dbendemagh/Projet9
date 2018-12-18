@@ -20,8 +20,8 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: fakeResponseData.error))
-        translationService.fromLanguage = Language(code: "fr",name: "French")
-        translationService.toLanguage = Language(code: "en",name: "English")
+        translationService.fromLanguage = Language(code: "fr", name: "French")
+        translationService.toLanguage = Language(code: "en", name: "English")
         let request = translationService.createTranslationRequest(text: text)
         
         // When
@@ -40,8 +40,8 @@ class TranslationTestCase: XCTestCase {
     func testGetTranslationShouldPostFailedCallbackIfNoData() {
         // Given
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: nil))
-        translationService.fromLanguage = Language(code: "fr",name: "French")
-        translationService.toLanguage = Language(code: "en",name: "English")
+        translationService.fromLanguage = Language(code: "fr", name: "French")
+        translationService.toLanguage = Language(code: "en", name: "English")
         let request = translationService.createTranslationRequest(text: text)
         
         // When
@@ -60,8 +60,8 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseKO, error: nil))
-        translationService.fromLanguage = Language(code: "fr",name: "French")
-        translationService.toLanguage = Language(code: "en",name: "English")
+        translationService.fromLanguage = Language(code: "fr", name: "French")
+        translationService.toLanguage = Language(code: "en", name: "English")
         let request = translationService.createTranslationRequest(text: text)
         
         // When
@@ -81,8 +81,8 @@ class TranslationTestCase: XCTestCase {
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         let urlSessionFake = URLSessionFake(data: fakeResponseData.incorrectData, response: fakeResponseData.responseOK, error: nil)
         var translationService = TranslationService(urlSession: urlSessionFake)
-        translationService.fromLanguage = Language(code: "fr",name: "French")
-        translationService.toLanguage = Language(code: "en",name: "English")
+        translationService.fromLanguage = Language(code: "fr", name: "French")
+        translationService.toLanguage = Language(code: "en", name: "English")
         let request = translationService.createTranslationRequest(text: text)
         
         // When
@@ -101,8 +101,8 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseOK, error: nil))
-        translationService.fromLanguage = Language(code: "fr",name: "French")
-        translationService.toLanguage = Language(code: "en",name: "English")
+        translationService.fromLanguage = Language(code: "fr", name: "French")
+        translationService.toLanguage = Language(code: "en", name: "English")
         let request = translationService.createTranslationRequest(text: text)
         
         // When
@@ -124,7 +124,7 @@ class TranslationTestCase: XCTestCase {
         
         //let request = translationService.createLanguagesRequest()
         
-        translationService.languages = [Language(code: "fr", name: "French"),Language(code: "en", name: "English")]
+        translationService.languages = [Language(code: "fr", name: "French"), Language(code: "en", name: "English")]
         
         XCTAssertEqual(translationService.languageCode(languageName: "French"), "fr")
         
@@ -133,7 +133,7 @@ class TranslationTestCase: XCTestCase {
     func testGivenLanguageIsTruc_WhenCallLanguageCode_ThenShouldReturnNothing() {
         let translationService = TranslationService()
         
-        translationService.languages = [Language(code: "fr", name: "French"),Language(code: "en", name: "English")]
+        translationService.languages = [Language(code: "fr", name: "French"), Language(code: "en", name: "English")]
         
         XCTAssertEqual(translationService.languageCode(languageName: "Truc"), "")
         
@@ -156,8 +156,8 @@ class TranslationTestCase: XCTestCase {
     func testReverseLanguages_TranslationIsFromFRToEN_ShouldSetTranslationFromENToFR() {
         let translationService = TranslationService()
         
-        translationService.fromLanguage = Language(code: "fr",name: "French")
-        translationService.toLanguage = Language(code: "en",name: "English")
+        translationService.fromLanguage = Language(code: "fr", name: "French")
+        translationService.toLanguage = Language(code: "en", name: "English")
         
         translationService.swapLanguages()
         
@@ -166,5 +166,4 @@ class TranslationTestCase: XCTestCase {
         XCTAssertEqual(translationService.toLanguage.code, "fr")
         XCTAssertEqual(translationService.toLanguage.name, "French")
     }
-    
 }

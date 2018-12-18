@@ -58,6 +58,7 @@ class TranslationVC: UIViewController {
     func setupCurrenciesPicker() {
         fromLanguageTextView.inputView = fromLanguagePickerView
         toLanguageTextView.inputView = toLanguagePickerView
+        // Enable selection only when languages are loaded
         fromLanguageTextView.isEnabled = true
         toLanguageTextView.isEnabled = true
     }
@@ -123,7 +124,7 @@ class TranslationVC: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func TranslateButtonTapped(_ sender: UIButton) {
+    @IBAction func translateButtonTapped(_ sender: UIButton) {
         translate()
     }
     
@@ -178,4 +179,3 @@ extension TranslationVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
-

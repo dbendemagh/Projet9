@@ -44,14 +44,16 @@ class TranslationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getLanguages()
         
+        setDisplay()
+    }
+    
+    func setDisplay() {
         fromTextView.text = "Hello"
         toTextView.text = ""
         
         swapLanguagesButton.imageView?.contentMode = .scaleAspectFit
-        
     }
     
     // Picker View for currency choice
@@ -79,6 +81,7 @@ class TranslationVC: UIViewController {
     
     // MARK: - Methods
     
+    // Retrieve languages list
     private func getLanguages() {
         let request = translationService.createLanguagesRequest()
         
@@ -115,11 +118,26 @@ class TranslationVC: UIViewController {
     // Done button tapped, save languages selection
     @objc func endEditing() {
         view.endEditing(true)
-        translationService.fromLanguage.code = translationService.languageCode(languageName: fromLanguageTextView.text!)
-        translationService.fromLanguage.name = fromLanguageTextView.text!
+        if let fromLanguage = fromLanguageTextView.text {
+            translationService.fromLanguage.code = translationService.languageCode(languageName: fromLanguage)
+            translationService.fromLanguage.name = fromLanguage
+        }
+        if let toLanguage = toLanguageTextView.text {
+            translationService.toLanguage.code = translationService.languageCode(languageName: toLanguage)
+            translationService.toLanguage.name = toLanguage
+        }
+    }
+    
+    func swapLanguages() {
+        translationService.swapLanguages()
         
-        translationService.toLanguage.code = translationService.languageCode(languageName: toLanguageTextView.text!)
-        translationService.toLanguage.name = toLanguageTextView.text!
+        let toLanguage = fromLanguageTextView.text
+        fromLanguageTextView.text = toLanguageTextView.text
+        toLanguageTextView.text = toLanguage
+        
+        let toText = fromTextView.text
+        fromTextView.text = toTextView.text
+        toTextView.text = toText
     }
     
     // MARK: - Actions
@@ -142,16 +160,9 @@ class TranslationVC: UIViewController {
         activityIndicator.isHidden = !shown
     }
     
+    // Invert languages
     @IBAction func swapLanguagesButtonTapped(_ sender: UIButton) {
-        translationService.swapLanguages()
-        
-        let toLanguage = fromLanguageTextView.text
-        fromLanguageTextView.text = toLanguageTextView.text
-        toLanguageTextView.text = toLanguage
-        
-        let toText = fromTextView.text
-        fromTextView.text = toTextView.text
-        toTextView.text = toText
+        swapLanguages()
     }
 }
 

@@ -25,7 +25,7 @@ class WeatherService: APIService {
         self.urlSession = urlSession
     }
     
-    // Create API weather request
+    // Create URL request
     func createWeatherRequest() -> URLRequest? {
         
         let weatherSelect = createWeatherSelect()

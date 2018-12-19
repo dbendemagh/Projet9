@@ -48,25 +48,9 @@ extension APIService {
                     return
                 }
                 
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print(jsonString)
-                }
-                
-//                do {
-//                    let resp = try JSONDecoder().decode(T.self, from: data)
-//                }
-//                catch {
-//                    print(error)
-//                }
-                
                 guard let responseJSON = try? JSONDecoder().decode(T.self, from: data) else {
                     callBack(false, nil)
                     return
-                }
-                
-                print(responseJSON)
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print(jsonString)
                 }
                 
                 callBack(true, responseJSON)

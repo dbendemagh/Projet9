@@ -24,7 +24,7 @@ class TranslationService: APIService {
         apiKey = getApiKey(key: "GoogleTranslateKey")
     }
     
-    // Create request to retrieve languages list
+    // Create URL request to retrieve languages list
     func createLanguagesRequest() -> URLRequest {
         let urlString: String = URLTranslation.baseURL + URLTranslation.languages + "?key=\(apiKey)&target=en"
         let url = URL(string: urlString)!
@@ -35,7 +35,7 @@ class TranslationService: APIService {
         return request
     }
     
-    // Create translation request with selected languages
+    // Create URL Request to retrieve translation with selected languages
     func createTranslationRequest(text: String) -> URLRequest {
         let urlString: String = URLTranslation.baseURL
         let url = URL(string: urlString)!

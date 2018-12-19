@@ -51,9 +51,6 @@ class ExchangeRateVC: UIViewController {
         getCurrencySymbols()
         getLastExchangeRate()
         
-        currencyService.fromCurrency = "EUR"
-        currencyService.toCurrency = "USD"
-        
         setupCurrenciesPicker()
         createToolbar()
     }
@@ -168,9 +165,12 @@ class ExchangeRateVC: UIViewController {
     
     @objc func endEditing() {
         view.endEditing(true)
-        // Déballer !!!!
-        currencyService.fromCurrency = fromCurrencyCodeTextField.text!
-        currencyService.toCurrency = toCurrencyCodeTextField.text!
+        if let fromCurrency = fromCurrencyCodeTextField.text {
+            currencyService.fromCurrency = fromCurrency
+        }
+        if let toCurrency = toCurrencyCodeTextField.text {
+            currencyService.toCurrency = toCurrency
+        }
         toValueTextField.text = ""
         getLastExchangeRate()
         

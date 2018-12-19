@@ -9,7 +9,6 @@
 import Foundation
 
 struct URLFixer {
-    // en majuscule ?
     static let baseURL = "http://data.fixer.io/api/"
     static let currencies = "symbols"
     static let rates = "latest"
@@ -32,7 +31,7 @@ struct JSON {
     static let Weather = "Weather"
 }
 
-struct Alert {
-    static let title = "Network error"
-    static let message = "Cannot get"
-}
+//struct Alert {
+//    static let title = "Network error"
+//    static let message = "Cannot get"
+//}

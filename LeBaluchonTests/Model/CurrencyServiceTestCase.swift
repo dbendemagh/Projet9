@@ -26,13 +26,6 @@ class CurrencyServiceTestCase: XCTestCase {
             expectation.fulfill()
         }
         
-//        currencyService.getCurrencySymbols { (success, currencyName: CurrencyName?) in
-//            // Then
-//            XCTAssertFalse(success)
-//            XCTAssertNil(currencyName)
-//            expectation.fulfill()
-//        }
-        
         wait(for: [expectation], timeout: 0.01)
     }
     
@@ -125,14 +118,6 @@ class CurrencyServiceTestCase: XCTestCase {
             XCTAssertEqual(exchangeRate?.rates["USD"], 1.15783)
             expectation.fulfill()
         }
-        
-//        currencyService.getExchangeRate(currency: "USD") { (success, exchangeRate: Double?) in
-//            // Then
-//            XCTAssertTrue(success)
-//            XCTAssertNotNil(exchangeRate)
-//            XCTAssertEqual(exchangeRate, 1.15783)
-//            expectation.fulfill()
-//        }
         
         wait(for: [expectation], timeout: 0.01)
     }

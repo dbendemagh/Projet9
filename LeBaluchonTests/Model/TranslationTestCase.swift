@@ -127,16 +127,14 @@ class TranslationTestCase: XCTestCase {
         translationService.languages = [Language(code: "fr", name: "French"), Language(code: "en", name: "English")]
         
         XCTAssertEqual(translationService.languageCode(languageName: "French"), "fr")
-        
     }
     
-    func testGivenLanguageIsTruc_WhenCallLanguageCode_ThenShouldReturnNothing() {
+    func testGivenLanguageIsUnknown_WhenCallLanguageCode_ThenShouldReturnNothing() {
         let translationService = TranslationService()
         
         translationService.languages = [Language(code: "fr", name: "French"), Language(code: "en", name: "English")]
         
-        XCTAssertEqual(translationService.languageCode(languageName: "Truc"), "")
-        
+        XCTAssertEqual(translationService.languageCode(languageName: "Unknown"), "")
     }
     
     func testLanguageCode_NameIsFrench_ShouldReturnfr() {

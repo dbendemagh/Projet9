@@ -47,9 +47,6 @@ class TranslationService: APIService {
         
         request.httpBody = body.data(using: .utf8)
         
-        //print(request.url)
-        //print(request.httpBody)
-        
         return request
     }
     

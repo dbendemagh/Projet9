@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - Google Translation Json
+// MARK: - Google Translate Json
 
 // Translation
 struct Translation: Decodable {

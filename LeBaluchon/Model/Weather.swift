@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: - Yahoo weather json
+
 struct Weather: Decodable {
     let query: Query
 }

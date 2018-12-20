@@ -218,8 +218,6 @@ class TranslationTestCase: XCTestCase {
     func testGivenLanguageIsFrench_WhenCallLanguageCode_ThenShouldReturnfr() {
         let translationService = TranslationService()
         
-        //let request = translationService.createLanguagesRequest()
-        
         translationService.languages = [Language(code: "fr", name: "French"), Language(code: "en", name: "English")]
         
         XCTAssertEqual(translationService.languageCode(languageName: "French"), "fr")

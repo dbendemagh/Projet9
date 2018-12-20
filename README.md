@@ -6,7 +6,7 @@ Le baluchon est une application de voyage qui permet :
 + de traduire de la langue locale vers l’anglais
 + de comparer la météo de la ville de New York et du lieu d’habitation
 
-# APIs
+## APIs
 
 L'application utilise les Apis :
 

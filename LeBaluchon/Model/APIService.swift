@@ -33,7 +33,7 @@ extension APIService {
         return apiKey
     }
     
-    // Generic function
+    // Manage URL request with generic decodable structure
     mutating func get<T: Decodable>(request: URLRequest, callBack: @escaping (Bool, T?) -> Void) {
         
         task = urlSession.dataTask(with: request) { (data, response, error) in

@@ -50,7 +50,7 @@ class TranslationVC: UIViewController {
     }
     
     func setDisplay() {
-        fromTextView.text = "Hello"
+        fromTextView.text = ""
         toTextView.text = ""
         
         swapLanguagesButton.imageView?.contentMode = .scaleAspectFit

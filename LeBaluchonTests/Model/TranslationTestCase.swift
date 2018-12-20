@@ -16,6 +16,102 @@ class TranslationTestCase: XCTestCase {
         text = "Hello"
     }
     
+    // Tests list languages
+    func testGetLanguagesShouldPostFailedCallback() {
+        // Given
+        let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
+        var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: fakeResponseData.error))
+        let request = translationService.createLanguagesRequest()
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        translationService.get(request: request) { (success, languagesList: LanguagesList?) in
+            // Then
+            XCTAssertFalse(success)
+            XCTAssertNil(languagesList)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetLanguagesShouldPostFailedCallbackIfNoData() {
+        // Given
+        var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: nil))
+        let request = translationService.createLanguagesRequest()
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        translationService.get(request: request) { (success, languagesList: LanguagesList?) in
+            // Then
+            XCTAssertFalse(success)
+            XCTAssertNil(languagesList)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetLanguagesShouldPostFailedCallbackIfIncorrectResponse() {
+        // Given
+        let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
+        var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseKO, error: nil))
+        let request = translationService.createLanguagesRequest()
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        translationService.get(request: request) { (success, languagesList: LanguagesList?) in
+            // Then
+            XCTAssertFalse(success)
+            XCTAssertNil(languagesList)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetLanguagesShouldPostFailedCallbackIfIncorrectData() {
+        // Given
+        let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
+        let urlSessionFake = URLSessionFake(data: fakeResponseData.incorrectData, response: fakeResponseData.responseOK, error: nil)
+        var translationService = TranslationService(urlSession: urlSessionFake)
+        let request = translationService.createTranslationRequest(text: text)
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        translationService.get(request: request) { (success, languagesList: LanguagesList?) in
+            // Then
+            XCTAssertFalse(success)
+            XCTAssertNil(languagesList)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetLanguagesShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
+        // Given
+        let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
+        var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseOK, error: nil))
+        let request = translationService.createLanguagesRequest()
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        translationService.get(request: request) { (success, languagesList: LanguagesList?) in
+            // Then
+            XCTAssertTrue(success)
+            XCTAssertNotNil(languagesList)
+            XCTAssertEqual(languagesList?.data.languages[0].code, "af")
+            XCTAssertEqual(languagesList?.data.languages[0].name, "Afrikaans")
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    // Tests translation
     func testGetTranslationShouldPostFailedCallback() {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Translation)

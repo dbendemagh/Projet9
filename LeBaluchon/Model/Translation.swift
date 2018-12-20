@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - Google Translation Json
 
+// Translation
 struct Translation: Decodable {
     let data: Translations
 }
@@ -22,6 +23,7 @@ struct TranslatedText: Decodable {
     let translatedText: String
 }
 
+// Language list
 struct LanguagesList: Decodable {
     let data: Languages
 }

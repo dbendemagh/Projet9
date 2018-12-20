@@ -27,11 +27,7 @@ struct URLWeather {
 struct JSON {
     static let CurrencySymbols = "CurrencySymbols"
     static let ExchangeRate = "ExchangeRate"
+    static let Languages = "Languages"
     static let Translation = "Translation"
     static let Weather = "Weather"
 }
-
-//struct Alert {
-//    static let title = "Network error"
-//    static let message = "Cannot get"
-//}

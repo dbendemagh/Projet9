@@ -15,8 +15,8 @@ class TranslationService: APIService {
     var apiKey = ""
     var languages: [Language] = []
     
-    var fromLanguage: Language = Language(code: "en", name: "English")
-    var toLanguage: Language = Language(code: "fr", name: "French")
+    var fromLanguage: Language = Language(code: "fr", name: "French")
+    var toLanguage: Language = Language(code: "en", name: "English")
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession

@@ -135,7 +135,6 @@ class CurrencyServiceTestCase: XCTestCase {
     }
     
     func testgetExchangeRate_CurrencyFromIsNotEuro_ShouldReturnCalculatedRate() {
-        //let currencyService = CurrencyService(urlSession: URLSessionFake(data: nil, response: nil, error: nil))
         let currencyService = CurrencyService()
         
         currencyService.fromCurrency = "BGN"
@@ -156,15 +155,6 @@ class CurrencyServiceTestCase: XCTestCase {
         XCTAssertEqual(currencyService.exchangeRate, 0)
     }
     
-//    func testgetExchangeRate_SetExchangeRateIsNotSet_Should() {
-//        let currencyService = CurrencyService()
-//
-//        currencyService.exchangeRate = 12
-//
-//        XCTAssertEqual(currencyService.exchangeRate, 0)
-//    }
-    
-    // testReverseCurrenciesShouldReverseCurrencies
     func testReverseCurrencies_ConversionIsFromEURToUSD_ShouldSetConversionFromUSDToEUR() {
         let currencyService = CurrencyService()
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherVC: UIViewController {
     
@@ -18,33 +19,64 @@ class WeatherVC: UIViewController {
     // MARK: - Properties
     
     var weatherService = WeatherService()
+    let locationManager = CLLocationManager()
     
     // MARK: - Init methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherTableView.tableFooterView = UIView()
-        getWeather()
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        getWeather()
+        loadTableView()
     }
     
     // MARK: - Methods
     
-    private func getWeather() {
-        guard let request = weatherService.createWeatherRequest() else { return }
-        
-        toggleActivityIndicator(shown: true)
-        weatherService.get(request: request) { (success, weather: Weather?) in
-            self.toggleActivityIndicator(shown: false)
-            if success, let weather = weather {
-                self.weatherService.weathers = weather.query.results.channel
-                self.weatherTableView.reloadData()
-            } else {
-                self.displayAlert(title: "Network error", message: "Cannot retrieve weather")
+    private func loadTableView() {
+        weatherService.weathers = []
+        getWeather(city: "New York", country: "us")
+        locationManager.requestLocation()
+    }
+    
+    private func getWeather(city: String, country: String) {
+        if let request = weatherService.createWeatherRequest(city, country) {
+            toggleActivityIndicator(shown: true)
+            weatherService.get(request: request) { (success, weather: WeatherData?) in
+                self.toggleActivityIndicator(shown: false)
+                if success, let weather = weather {
+                    self.addWeather(weatherData: weather)
+                    self.weatherTableView.reloadData()
+                } else {
+                    self.displayAlert(title: "Network error", message: "Cannot retrieve weather")
+                }
             }
+        }
+    }
+    
+    private func getWeather(latitude: Double, longitude: Double) {
+        if let request = weatherService.createWeatherRequest(latitude, longitude) {
+            toggleActivityIndicator(shown: true)
+            weatherService.get(request: request) { (success, weather: WeatherData?) in
+                self.toggleActivityIndicator(shown: false)
+                if success, let weather = weather {
+                    self.addWeather(weatherData: weather)
+                    self.weatherTableView.reloadData()
+                } else {
+                    self.displayAlert(title: "Network error", message: "Cannot retrieve weather")
+                }
+            }
+        }
+    }
+    
+    private func addWeather(weatherData: WeatherData) {
+        if let weather = weatherData.weather.last {
+            let weatherModel = WeatherModel(id: weather.id, city: weatherData.name, temperature: weatherData.main.temp, description: weather.description)
+            weatherService.weathers.append(weatherModel)
         }
     }
     
@@ -52,6 +84,8 @@ class WeatherVC: UIViewController {
         activityIndicator.isHidden = !shown
     }
 }
+
+// MARK: - Table View Delegate
 
 extension WeatherVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,10 +99,32 @@ extension WeatherVC: UITableViewDataSource {
         
         let weather = weatherService.weathers[indexPath.row]
         
-        let date = weather.item.condition.date.split(separator: " ")
-        let time = "\(date[4]) \(date[5])"
-        cell.configure(city: weather.location.city, temp: weather.item.condition.temp, description: weather.item.condition.text, time: time, image: weather.item.condition.code)
+        //let date = weather.item.condition.date.split(separator: " ")
+        //let time = "\(date[4]) \(date[5])"
+        cell.configure(city: weather.city,
+                       temp: String(weather.temperature),
+                       description: weather.description,
+                       imageId: weather.id)
         
         return cell
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension WeatherVC: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = Double(location.coordinate.latitude)
+            let lon = Double(location.coordinate.longitude)
+            getWeather(latitude: lat, longitude: lon)
+            //weatherManager.fetchWeather(latitude: Doublelat, longitude: lon)
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }

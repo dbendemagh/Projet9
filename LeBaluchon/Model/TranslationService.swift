@@ -25,9 +25,9 @@ class TranslationService: APIService {
     }
     
     // Create URL request to retrieve languages list
-    func createLanguagesRequest() -> URLRequest {
+    func createLanguagesRequest() -> URLRequest? {
         let urlString: String = URLTranslation.baseURL + URLTranslation.languages + "?key=\(apiKey)&target=en"
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else { return nil }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -36,9 +36,9 @@ class TranslationService: APIService {
     }
     
     // Create URL Request to retrieve translation with selected languages
-    func createTranslationRequest(text: String) -> URLRequest {
+    func createTranslationRequest(text: String) -> URLRequest? {
         let urlString: String = URLTranslation.baseURL
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else { return nil }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

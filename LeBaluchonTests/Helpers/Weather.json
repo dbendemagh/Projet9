@@ -1,41 +1,43 @@
 {
-    "query": {
-        "count": 2,
-        "created": "2018-11-13T10:49:55Z",
-        "lang": "en-US",
-        "results": {
-            "channel": [
-                {
-                    "location": {
-                        "city": "Chantilly",
-                        "country": "France",
-                        "region": " Picardy"
-                    },
-                    "item": {
-                        "condition": {
-                            "code": "32",
-                            "date": "Tue, 13 Nov 2018 11:00 AM CET",
-                            "temp": "11",
-                            "text": "Sunny"
-                        }
-                    }
-                },
-                {
-                    "location": {
-                        "city": "New York",
-                        "country": "United States",
-                        "region": " NY"
-                    },
-                    "item": {
-                        "condition": {
-                            "code": "12",
-                            "date": "Tue, 13 Nov 2018 05:00 AM EST",
-                            "temp": "7",
-                            "text": "Rain"
-                        }
-                    }
-                }
-            ]
+    "coord": {
+        "lon": 2.47,
+        "lat": 49.19
+    },
+    "weather": [
+        {
+            "id": 802,
+            "main": "Clouds",
+            "description": "partiellement nuageux",
+            "icon": "03d"
         }
-    }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 29.36,
+        "feels_like": 29.65,
+        "temp_min": 29,
+        "temp_max": 30,
+        "pressure": 1014,
+        "humidity": 48
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 3.1,
+        "deg": 110
+    },
+    "clouds": {
+        "all": 29
+    },
+    "dt": 1597225557,
+    "sys": {
+        "type": 1,
+        "id": 6542,
+        "country": "FR",
+        "sunrise": 1597207092,
+        "sunset": 1597259531
+    },
+    "timezone": 7200,
+    "id": 3026827,
+    "name": "Chantilly",
+    "cod": 200
 }

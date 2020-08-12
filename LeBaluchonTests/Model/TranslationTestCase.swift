@@ -21,7 +21,7 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: fakeResponseData.error))
-        let request = translationService.createLanguagesRequest()
+        guard let request = translationService.createLanguagesRequest() else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -39,7 +39,7 @@ class TranslationTestCase: XCTestCase {
     func testGetLanguagesShouldPostFailedCallbackIfNoData() {
         // Given
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: nil))
-        let request = translationService.createLanguagesRequest()
+        guard let request = translationService.createLanguagesRequest() else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -57,7 +57,7 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseKO, error: nil))
-        let request = translationService.createLanguagesRequest()
+        guard let request = translationService.createLanguagesRequest() else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -76,7 +76,7 @@ class TranslationTestCase: XCTestCase {
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
         let urlSessionFake = URLSessionFake(data: fakeResponseData.incorrectData, response: fakeResponseData.responseOK, error: nil)
         var translationService = TranslationService(urlSession: urlSessionFake)
-        let request = translationService.createTranslationRequest(text: text)
+        guard let request = translationService.createTranslationRequest(text: text) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -94,7 +94,7 @@ class TranslationTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.Languages)
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseOK, error: nil))
-        let request = translationService.createLanguagesRequest()
+        guard let request = translationService.createLanguagesRequest() else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -118,7 +118,7 @@ class TranslationTestCase: XCTestCase {
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: fakeResponseData.error))
         translationService.fromLanguage = Language(code: "fr", name: "French")
         translationService.toLanguage = Language(code: "en", name: "English")
-        let request = translationService.createTranslationRequest(text: text)
+        guard let request = translationService.createTranslationRequest(text: text) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -138,7 +138,7 @@ class TranslationTestCase: XCTestCase {
         var translationService = TranslationService(urlSession: URLSessionFake(data: nil, response: nil, error: nil))
         translationService.fromLanguage = Language(code: "fr", name: "French")
         translationService.toLanguage = Language(code: "en", name: "English")
-        let request = translationService.createTranslationRequest(text: text)
+        guard let request = translationService.createTranslationRequest(text: text) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -158,7 +158,7 @@ class TranslationTestCase: XCTestCase {
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseKO, error: nil))
         translationService.fromLanguage = Language(code: "fr", name: "French")
         translationService.toLanguage = Language(code: "en", name: "English")
-        let request = translationService.createTranslationRequest(text: text)
+        guard let request = translationService.createTranslationRequest(text: text) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -179,7 +179,7 @@ class TranslationTestCase: XCTestCase {
         var translationService = TranslationService(urlSession: urlSessionFake)
         translationService.fromLanguage = Language(code: "fr", name: "French")
         translationService.toLanguage = Language(code: "en", name: "English")
-        let request = translationService.createTranslationRequest(text: text)
+        guard let request = translationService.createTranslationRequest(text: text) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -199,7 +199,7 @@ class TranslationTestCase: XCTestCase {
         var translationService = TranslationService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseOK, error: nil))
         translationService.fromLanguage = Language(code: "fr", name: "French")
         translationService.toLanguage = Language(code: "en", name: "English")
-        let request = translationService.createTranslationRequest(text: text)
+        guard let request = translationService.createTranslationRequest(text: text) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")

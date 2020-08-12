@@ -79,18 +79,18 @@ class ExchangeRateVC: UIViewController {
     
     // Retrieve currency list for Picker View selection
     private func getCurrencySymbols() {
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
-        
-        toggleActivityIndicator(shown: true)
-        currencyService.get(request: request) { (success, currencyName: CurrencyName?) in
-            self.toggleActivityIndicator(shown: false)
-            if success, let currencyName = currencyName?.symbols {
-                // Convert dictionnary to Currency struct and sort by name
-                self.currencyService.currencies = currencyName.map({return Currency(code: $0.key, name: $0.value) }).sorted(by: {$0.name < $1.name})
-                print(self.currencyService.currencies)
-                self.updateDisplay()
-            } else {
-                self.displayAlert(title: "Network error", message: "Cannot retrieve currency symbols")
+        if let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies) {
+            toggleActivityIndicator(shown: true)
+            currencyService.get(request: request) { (success, currencyName: CurrencyName?) in
+                self.toggleActivityIndicator(shown: false)
+                if success, let currencyName = currencyName?.symbols {
+                    // Convert dictionnary to Currency struct and sort by name
+                    self.currencyService.currencies = currencyName.map({return Currency(code: $0.key, name: $0.value) }).sorted(by: {$0.name < $1.name})
+                    print(self.currencyService.currencies)
+                    self.updateDisplay()
+                } else {
+                    self.displayAlert(title: "Network error", message: "Cannot retrieve currency symbols")
+                }
             }
         }
     }
@@ -100,21 +100,22 @@ class ExchangeRateVC: UIViewController {
         currencyService.fromExchangeRate = 0
         currencyService.toExchangeRate = 0
         
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true)
+        if let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true) {
         
-        toggleActivityIndicator(shown: true)
-        currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
-            self.toggleActivityIndicator(shown: false)
-            if success, let exchangeRate = exchangeRate {
-                self.currencyService.exchangeRates = exchangeRate.rates
-                if let fromExchangeRate = exchangeRate.rates[self.currencyService.fromCurrency],
-                    let toExchangeRate = exchangeRate.rates[self.currencyService.toCurrency] {
-                    self.currencyService.fromExchangeRate = fromExchangeRate
-                    self.currencyService.toExchangeRate = toExchangeRate
-                    self.updateDisplay()
+            toggleActivityIndicator(shown: true)
+            currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
+                self.toggleActivityIndicator(shown: false)
+                if success, let exchangeRate = exchangeRate {
+                    self.currencyService.exchangeRates = exchangeRate.rates
+                    if let fromExchangeRate = exchangeRate.rates[self.currencyService.fromCurrency],
+                        let toExchangeRate = exchangeRate.rates[self.currencyService.toCurrency] {
+                        self.currencyService.fromExchangeRate = fromExchangeRate
+                        self.currencyService.toExchangeRate = toExchangeRate
+                        self.updateDisplay()
+                    }
+                } else {
+                    self.displayAlert(title: "Network error", message: "Cannot retrieve exchange rate")
                 }
-            } else {
-                self.displayAlert(title: "Network error", message: "Cannot retrieve exchange rate")
             }
         }
     }
@@ -131,22 +132,23 @@ class ExchangeRateVC: UIViewController {
         }
         
         // Calculate with the last exchange rate
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true)
+        if let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true) {
         
-        toggleActivityIndicator(shown: true)
-        currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
-            self.toggleActivityIndicator(shown: false)
-            if success, let exchangeRate = exchangeRate {
-                if let fromExchangeRate = exchangeRate.rates[self.currencyService.fromCurrency],
-                    let toExchangeRate = exchangeRate.rates[self.currencyService.toCurrency] {
-                    self.currencyService.fromExchangeRate = fromExchangeRate
-                    self.currencyService.toExchangeRate = toExchangeRate
-                    self.updateDisplay()
-                    let result = fromValue * self.currencyService.exchangeRate
-                    self.toValueTextField.text = result.fraction(2)
+            toggleActivityIndicator(shown: true)
+            currencyService.get(request: request) { (success, exchangeRate: ExchangeRate?) in
+                self.toggleActivityIndicator(shown: false)
+                if success, let exchangeRate = exchangeRate {
+                    if let fromExchangeRate = exchangeRate.rates[self.currencyService.fromCurrency],
+                        let toExchangeRate = exchangeRate.rates[self.currencyService.toCurrency] {
+                        self.currencyService.fromExchangeRate = fromExchangeRate
+                        self.currencyService.toExchangeRate = toExchangeRate
+                        self.updateDisplay()
+                        let result = fromValue * self.currencyService.exchangeRate
+                        self.toValueTextField.text = result.fraction(2)
+                    }
+                } else {
+                    self.displayAlert(title: "Network error", message: "Cannot retrieve exchange rate")
                 }
-            } else {
-                self.displayAlert(title: "Network error", message: "Cannot retrieve exchange rate")
             }
         }
     }

@@ -11,10 +11,11 @@ import XCTest
 
 class CurrencyServiceTestCase: XCTestCase {
     func testGetCurrencySymbolsShouldPostFailedCallback() {
+        
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.CurrencySymbols)
         var currencyService = CurrencyService(urlSession: URLSessionFake(data: nil, response: nil, error: fakeResponseData.error))
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
+        guard let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -32,7 +33,7 @@ class CurrencyServiceTestCase: XCTestCase {
     func testGetCurrencySymbolsShouldPostFailedCallbackIfNoData() {
         // Given
         var currencyService = CurrencyService(urlSession: URLSessionFake(data: nil, response: nil, error: nil))
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
+        guard let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -50,7 +51,7 @@ class CurrencyServiceTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.ExchangeRate)
         var currencyService = CurrencyService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseKO, error: nil))
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
+        guard let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -69,7 +70,7 @@ class CurrencyServiceTestCase: XCTestCase {
         let fakeResponseData = FakeResponseData(jsonFile: JSON.CurrencySymbols)
         let urlSessionFake = URLSessionFake(data: fakeResponseData.incorrectData, response: fakeResponseData.responseOK, error: nil)
         var currencyService = CurrencyService(urlSession: urlSessionFake)
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
+        guard let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -87,7 +88,7 @@ class CurrencyServiceTestCase: XCTestCase {
         // Given
         let fakeResponseData = FakeResponseData(jsonFile: JSON.CurrencySymbols)
         var currencyService = CurrencyService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseOK, error: nil))
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies)
+        guard let request = currencyService.createFixerRequest(endPoint: URLFixer.currencies) else { return }
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -106,7 +107,7 @@ class CurrencyServiceTestCase: XCTestCase {
     func testGetExchangeRateShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         let fakeResponseData = FakeResponseData(jsonFile: JSON.ExchangeRate)
         var currencyService = CurrencyService(urlSession: URLSessionFake(data: fakeResponseData.correctData, response: fakeResponseData.responseOK, error: nil))
-        let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true)
+        guard let request = currencyService.createFixerRequest(endPoint: URLFixer.rates, currencyConversion: true) else { return }
         
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")

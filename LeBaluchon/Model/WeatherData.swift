@@ -10,51 +10,19 @@ import Foundation
 
 // MARK: - Openweathermap json
 
-struct WeatherData {
+struct WeatherData: Decodable {
+    let name: String
     let main: Main
     var weather: [Weather]
-}
-
-struct Weather {
-    let id: Int
-    let main: String
-    let description: String
 }
 
 struct Main: Decodable {
     let temp: Double
 }
 
+struct Weather: Decodable {
+    let id: Int
+    let main: String
+    let description: String
+}
 
-//struct Weather: Decodable {
-//    let query: Query
-//}
-//
-//struct Query: Decodable {
-//    let count: Int
-//    let created: String
-//    let lang: String
-//    let results: Results
-//}
-//
-//struct Results: Decodable {
-//    let channel: [Channel]
-//}
-//
-//struct Channel: Decodable {
-//    let location: Location
-//    let item: Item
-//}
-//
-//struct Location: Decodable {
-//    let city: String
-//    let country: String
-//}
-//
-//struct Item: Decodable {
-//    let condition: Condition
-//}
-//
-//struct Condition: Decodable {
-//    let code, date, temp, text: String
-//}

@@ -1,5 +1,7 @@
 # Project 9 - Le Baluchon
 
+![](Documentation/LeBaluchon.png)
+
 Le baluchon est une application de voyage qui permet :
 
 + d’obtenir le taux de change entre la monnaie locale et le dollar
@@ -12,7 +14,7 @@ L'application utilise les Apis :
 
 + Fixer.io
 + Google Translate
-+ Yahoo Weather
++ OpenWeatherMap
 
 Pour tester l'application, il est nécessaire d'avoir une Api key pour les Apis Fixer.io et Google Translate.
 

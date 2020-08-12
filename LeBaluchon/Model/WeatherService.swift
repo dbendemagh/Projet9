@@ -15,25 +15,27 @@ class WeatherService: APIService {
     var urlSession: URLSession
     var task: URLSessionDataTask?
     
-    let locations: [Location] = [Location(city: "New-York", country: "us"),
-                                 Location(city: "La Chapelle-en-serval", country: "fr")]
-    var weathers: [Channel] = []
+    var apiKey = ""
+    var weathers: [WeatherModel] = []
+    
+    //var weather: WeatherData
     
     // MARK: - Methods
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
+        apiKey = getApiKey(key: "OpenweathermapKey")
     }
     
     // Create URL request
-    func createWeatherRequest() -> URLRequest? {
+    func createWeatherRequest(_ city: String, _ country: String) -> URLRequest? {
         
-        let weatherSelect = createWeatherSelect()
+        let urlString: String = "\(URLWeather.baseURL)?appid=\(apiKey)&q=\(city),\(country)&units=metric&lang=fr"
+        guard let encodeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil}
         
-        guard let encodedWeatherSelect = weatherSelect.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
-        
-        let urlString: String = "\(URLWeather.baseURL)?\(encodedWeatherSelect)&format=json"
-        let url = URL(string: urlString)!
+        guard let url = URL(string: encodeUrlString) else {
+            print("Erreur URL !")
+            return nil }
 
         print(url)
         
@@ -43,17 +45,16 @@ class WeatherService: APIService {
         return request
     }
     
-    // Create Yahoo weather select
-    private func createWeatherSelect() -> String {
-        var locationsParameter: String = ""
+    func createWeatherRequest(_ latitude: Double, _ longitude: Double) -> URLRequest? {
         
-        for location in locations {
-            locationsParameter += "'\(location.city), \(location.country)',"
-        }
-        locationsParameter.removeLast()
+        let urlString: String = "\(URLWeather.baseURL)?appid=\(apiKey)&lat=\(latitude)&lon=\(longitude)&units=metric&lang=fr"
+        guard let url = URL(string: urlString) else { return nil }
+
+        print(url)
         
-        let select = URLWeather.select.replacingOccurrences(of: "%locations", with: locationsParameter)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         
-        return select
+        return request
     }
 }

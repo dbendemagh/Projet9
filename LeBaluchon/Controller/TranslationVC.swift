@@ -86,7 +86,7 @@ class TranslationVC: UIViewController {
         let request = translationService.createLanguagesRequest()
         
         toggleActivityIndicator(shown: true)
-        translationService.get(request: request) { (success, languagesList: LanguagesList?) in
+        translationService.get(request: request!) { (success, languagesList: LanguagesList?) in
             self.toggleActivityIndicator(shown: false)
             if success, let languageList = languagesList {
                 self.translationService.languages = languageList.data.languages
@@ -104,13 +104,13 @@ class TranslationVC: UIViewController {
             return
         }
         
-        let request = translationService.createTranslationRequest(text: text)
-        
-        translationService.get(request: request) { (success, translation: Translation?) in
-            if success, let translation = translation {
-                self.toTextView.text = translation.data.translations[0].translatedText
-            } else {
-                self.displayAlert(title: "Network error", message: "Cannot retrieve translation")
+        if let request = translationService.createTranslationRequest(text: text) {
+            translationService.get(request: request) { (success, translation: Translation?) in
+                if success, let translation = translation {
+                    self.toTextView.text = translation.data.translations[0].translatedText
+                } else {
+                    self.displayAlert(title: "Network error", message: "Cannot retrieve translation")
+                }
             }
         }
     }

@@ -44,14 +44,14 @@ class CurrencyService: APIService {
     }
     
     // Create URL Request
-    func createFixerRequest(endPoint: String, currencyConversion: Bool = false) -> URLRequest {
-        var urlString: String = URLFixer.baseURL + endPoint + "&access_key=" + apiKey
+    func createFixerRequest(endPoint: String, currencyConversion: Bool = false) -> URLRequest? {
+        var urlString: String = URLFixer.baseURL + endPoint + "?access_key=" + apiKey 
         
         if currencyConversion {
             urlString += "&symbols=\(fromCurrency),\(toCurrency)"
         }
         
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else { return nil }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

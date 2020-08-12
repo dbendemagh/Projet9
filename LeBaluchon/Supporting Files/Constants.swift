@@ -20,8 +20,7 @@ struct URLTranslation {
 }
 
 struct URLWeather {
-    static let baseURL = "https://query.yahooapis.com/v1/public/yql"
-    static let select = "q=select location, item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text in (%locations)) and u='c'"
+    static let baseURL = "https://api.openweathermap.org/data/2.5/weather"
 }
 
 struct JSON {
